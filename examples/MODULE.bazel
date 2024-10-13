@@ -1,27 +1,27 @@
-"""Module for `libc_replacer`.
+"""Test module for `libc_replacer`.
 """
 
 module(
-    name = "libc_replacer",
+    name = "libc_replacer_examples",
     version = "0.0.0",
 )
 
-################################
-#
-# Dev-dependencies
-#
-################################
+bazel_dep(name = "libc_replacer", version = "0.0.0")
+local_path_override(
+    module_name = "libc_replacer",
+    path = "..",
+)
+
+# Register toolchain for C/C++
 
 bazel_dep(
     name = "hermetic_cc_toolchain",
     version = "3.1.1",
-    dev_dependency = True,
 )
 
 cc_toolchains = use_extension(
     "@hermetic_cc_toolchain//toolchain:ext.bzl",
     "toolchains",
-    dev_dependency = True,
 )
 use_repo(cc_toolchains, "zig_sdk")
 
@@ -32,7 +32,4 @@ register_toolchains(
     "@zig_sdk//toolchain:darwin_arm64",
     "@zig_sdk//toolchain:windows_amd64",
     "@zig_sdk//toolchain:windows_arm64",
-    dev_dependency = True,
 )
-
-bazel_dep(name = "buildifier_prebuilt", version = "7.3.1", dev_dependency = True)

@@ -1,0 +1,9 @@
+# Generated based on version configuration
+.bazeliskrc
+
+# Bazel
+/bazel-*
+MODULE.bazel.lock
+
+# For development
+/.cache
