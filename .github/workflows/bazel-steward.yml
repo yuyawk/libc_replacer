@@ -1,0 +1,40 @@
+---
+name: Bazel Steward
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "30 5 * * *" # runs every day at 5:30 am
+
+jobs:
+  bazel-steward:
+    strategy:
+      matrix:
+        workspace-root:
+          - "."
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Generate GitHub Apps token
+        uses: actions/create-github-app-token@v1
+        id: app-token
+        with:
+          app-id: ${{ secrets.BAZEL_STEWARD_APP_ID }}
+          private-key: ${{ secrets.BAZEL_STEWARD_APP_PRIVATE_KEY }}
+      - name: Generate config file to modify branch name
+        shell: bash
+        run: |
+          echo "${{ matrix.workspace-root }}" >temp_ws_root.txt
+          prefix=$(base64 < temp_ws_root.txt | sed 's/=/_/g')
+          cat << EOS > bazel-steward.yaml
+          ---
+          pull-requests:
+            - branch-prefix: "bazel-steward-${prefix}/"
+          EOS
+      - uses: VirtusLab/bazel-steward@v1.5.2
+        with:
+          github-token: ${{ steps.app-token.outputs.token }}
+          # Workaround for multiple workspaces (cf. https://github.com/VirtusLab/bazel-steward/issues/40)
+          additional-args: ${{ matrix.workspace-root }}

@@ -1,0 +1,15 @@
+"""Module for `libc_replacer`.
+"""
+
+module(
+    name = "libc_replacer",
+    version = "0.0.0",
+)
+
+################################
+#
+# Dev-dependencies
+#
+################################
+
+bazel_dep(name = "buildifier_prebuilt", version = "7.3.1", dev_dependency = True)
