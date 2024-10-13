@@ -1,0 +1,45 @@
+---
+name: Run tests
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  style-check:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+      - name: Set up
+        uses: ./.github/actions/setup
+        with:
+          bazel-version: 7.1.1
+      - name: Run formatters and linters
+        shell: bash
+        run: ./development/cli/style_check.bash
+      - name: Fail if some files are changed
+        shell: bash
+        run: |
+          if ! git diff --exit-code; then
+            echo "ERROR: Files are changed by formatters" >&2
+            exit 1
+          fi
+
+  all-tests-passable:
+    if: always()
+    needs:
+      - style-check
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Decide whether the needed jobs succeeded or failed
+        uses: re-actors/alls-green@release/v1
+        with:
+          jobs: ${{ toJSON(needs) }}
