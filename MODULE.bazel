@@ -43,8 +43,8 @@ bazel_dep(name = "buildifier_prebuilt", version = "7.3.1", dev_dependency = True
 bazel_dep(name = "bazel_clang_tidy", version = "", dev_dependency = True)
 git_override(
     module_name = "bazel_clang_tidy",
-    commit = "a01e5e262e6d604c21ed11c420a2a245397b995a",
-    remote = "https://github.com/erenon/bazel_clang_tidy.git",
+    commit = "26417c9635a9b0ddc6c5b1ff73220934423d9372",
+    remote = "https://github.com/yuyawk/bazel_clang_tidy.git",
 )
 
 bazel_dep(name = "toolchains_llvm", version = "1.2.0", dev_dependency = True)
