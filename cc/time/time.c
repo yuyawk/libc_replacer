@@ -16,9 +16,9 @@ time_t __real_time(time_t *tloc);
 time_t __wrap_time(time_t *tloc);
 
 // NOLINTNEXTLINE(cppcoreguidelines-avoid-non-const-global-variables)
-static _Atomic(time_func_ptr_t) func = __real_time;
+static _Atomic(libc_replacer_time_func_ptr_t) func = __real_time;
 
-void libc_replacer_overwrite_time(time_func_ptr_t func_new)
+void libc_replacer_overwrite_time(libc_replacer_time_func_ptr_t func_new)
 {
     atomic_store(&func, func_new);
 }
@@ -30,6 +30,6 @@ void libc_replacer_reset_time(void)
 
 time_t __wrap_time(time_t *tloc)
 {
-    time_func_ptr_t func_got = atomic_load(&func);
+    libc_replacer_time_func_ptr_t func_got = atomic_load(&func);
     return func_got(tloc);
 }
