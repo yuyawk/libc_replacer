@@ -22,8 +22,23 @@ build:macos --sandbox_add_mount_pair=/var/tmp
 build:windows --sandbox_add_mount_pair=C:\Temp
 
 # Config for clang-tidy
-
 build:clang-tidy --aspects @bazel_clang_tidy//clang_tidy:clang_tidy.bzl%clang_tidy_aspect
 build:clang-tidy --output_groups=report
 build:clang-tidy --@bazel_clang_tidy//:clang_tidy_executable=@llvm_toolchain_llvm//:clang-tidy
 build:clang-tidy --@bazel_clang_tidy//:clang_tidy_config=//development/clang_tidy:clang_tidy_config
+
+# C compilation
+build --copt -Wall
+build --copt -Wextra
+build --copt -Werror
+build --copt -pedantic
+build --copt -Wconversion
+build --copt -Wcast-align
+build --copt -Wunused
+build --copt -Wshadow
+build --copt -Wold-style-cast
+build --copt -Wpointer-arith
+build --copt -Wcast-qual
+build --copt -Wmissing-prototypes
+build --copt -Wno-missing-braces
+build --conlyopt -std=c11

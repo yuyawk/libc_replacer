@@ -3,4 +3,5 @@ cc_library(
     srcs = ["time.c"],
     hdrs = ["time.h"],
     linkopts = ["-Wl,-wrap=time"],
+    deps = ["//cc/internal"],
 )

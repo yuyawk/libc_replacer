@@ -1,0 +1,5 @@
+cc_library(
+    name = "internal",
+    hdrs = ["internal.h"],
+    visibility = ["//cc:__subpackages__"],
+)

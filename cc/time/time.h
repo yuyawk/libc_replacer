@@ -1,7 +1,10 @@
-#ifndef LIBC_REPLACER_CC_TIME_TIME_H_
-#define LIBC_REPLACER_CC_TIME_TIME_H_
+#ifndef INCLUDE_GUARD_LIBC_REPLACER_CC_TIME_TIME_H_
+#define INCLUDE_GUARD_LIBC_REPLACER_CC_TIME_TIME_H_
 
 #include <time.h>
+#include "cc/internal/internal.h"
+
+LIBC_REPLACER_DECLARATION_START
 
 /// @brief Type of the function pointer to @c time().
 typedef time_t (*time_func_ptr_t)(time_t *tloc);
@@ -13,6 +16,8 @@ void libc_replacer_overwrite_time(time_func_ptr_t func_new);
 
 /// @brief Reset @c time().
 /// @post @c time() is reset to the original API.
-void libc_replacer_reset_time();
+void libc_replacer_reset_time(void);
 
-#endif // LIBC_REPLACER_CC_TIME_TIME_H_
+LIBC_REPLACER_DECLARATION_END
+
+#endif // INCLUDE_GUARD_LIBC_REPLACER_CC_TIME_TIME_H_

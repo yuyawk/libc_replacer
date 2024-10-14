@@ -6,3 +6,5 @@ MODULE.bazel.lock
 
 # For development
 /.cache
+
+/.vscode

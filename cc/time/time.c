@@ -19,7 +19,7 @@ void libc_replacer_overwrite_time(time_func_ptr_t func_new)
     atomic_store(&func, func_new);
 }
 
-void libc_replacer_reset_time()
+void libc_replacer_reset_time(void)
 {
     atomic_store(&func, __real_time);
 }
