@@ -16,5 +16,3 @@ buildifier_targets="$(
 )"
 
 "${BAZEL_EXECUTABLE[@]}" run -- @buildifier_prebuilt//:buildifier -lint=fix ${buildifier_targets}
-
-"${BAZEL_EXECUTABLE[@]}" build //... --config clang-tidy

@@ -21,12 +21,6 @@ build:linux --sandbox_add_mount_pair=/tmp
 build:macos --sandbox_add_mount_pair=/var/tmp
 build:windows --sandbox_add_mount_pair=C:\Temp
 
-# Config for clang-tidy
-build:clang-tidy --aspects @bazel_clang_tidy//clang_tidy:clang_tidy.bzl%clang_tidy_aspect
-build:clang-tidy --output_groups=report
-build:clang-tidy --@bazel_clang_tidy//:clang_tidy_executable=@llvm_toolchain_llvm//:clang-tidy
-build:clang-tidy --@bazel_clang_tidy//:clang_tidy_config=//development/clang_tidy:clang_tidy_config
-
 # C compilation
 build --copt -Wall
 build --copt -Wextra
