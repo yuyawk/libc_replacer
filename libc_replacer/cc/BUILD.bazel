@@ -1,0 +1,13 @@
+"""Define public include point.
+"""
+
+cc_library(
+    name = "cc",
+    hdrs = ["interface.h"],
+    include_prefix = "libc_replacer/cc",
+    strip_include_prefix = ".",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//libc_replacer/cc/time",
+    ],
+)

@@ -6,6 +6,6 @@ cc_library(
     srcs = ["time.c"],
     hdrs = ["time.h"],
     linkopts = ["-Wl,-wrap=time"],
-    visibility = ["//visibility:public"],
-    deps = ["//cc/internal"],
+    visibility = ["//libc_replacer/cc:__pkg__"],
+    deps = ["//libc_replacer/cc/internal"],
 )

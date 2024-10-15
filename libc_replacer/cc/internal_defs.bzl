@@ -19,9 +19,7 @@ def _get_modified_kwargs(kwargs_dict):
     kwargs_dict["linkstatic"] = True
 
     # Append all libc replacer implementations to `deps`
-    kwargs_dict["deps"] = kwargs_dict.pop("deps", []) + [
-        "//cc/time",
-    ]
+    kwargs_dict["deps"] = kwargs_dict.pop("deps", []) + [Label("//libc_replacer/cc")]
 
     return kwargs_dict
 

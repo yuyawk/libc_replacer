@@ -1,7 +1,7 @@
 #ifndef INCLUDE_GUARD_LIBC_REPLACER_CC_TIME_TIME_H_
 #define INCLUDE_GUARD_LIBC_REPLACER_CC_TIME_TIME_H_
 
-#include "cc/internal/internal.h"
+#include "libc_replacer/cc/internal/internal.h"
 
 #include <time.h>
 

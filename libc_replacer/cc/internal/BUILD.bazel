@@ -4,5 +4,5 @@
 cc_library(
     name = "internal",
     hdrs = ["internal.h"],
-    visibility = ["//cc:__subpackages__"],
+    visibility = ["//libc_replacer/cc:__subpackages__"],
 )

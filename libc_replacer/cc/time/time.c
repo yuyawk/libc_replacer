@@ -1,4 +1,4 @@
-#include "cc/time/time.h"
+#include "libc_replacer/cc/time/time.h"
 
 #include <stdatomic.h>
 #include <time.h>
