@@ -1,3 +1,6 @@
+"""Internal C/C++ implementations.
+"""
+
 cc_library(
     name = "internal",
     hdrs = ["internal.h"],

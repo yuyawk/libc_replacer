@@ -1,7 +1,11 @@
+"""C/C++ implementations to replace `time`.
+"""
+
 cc_library(
     name = "time",
     srcs = ["time.c"],
     hdrs = ["time.h"],
     linkopts = ["-Wl,-wrap=time"],
+    visibility = ["//visibility:public"],
     deps = ["//cc/internal"],
 )
