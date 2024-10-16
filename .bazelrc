@@ -43,3 +43,4 @@ build --copt -Wmissing-prototypes
 build --copt -Wno-missing-braces
 build --conlyopt -std=c11
 build --cxxopt -std=c++20
+build --per_file_copt=external/.*@-w
