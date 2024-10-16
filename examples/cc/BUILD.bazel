@@ -3,6 +3,10 @@ load(
     "cc_libc_replacer_binary",
     "cc_libc_replacer_test",
 )
+load(
+    "//:utility.bzl",
+    "compatible_sh_test",
+)
 
 cc_libc_replacer_binary(
     name = "time_test_binary",
@@ -18,7 +22,7 @@ cc_libc_replacer_test(
     deps = ["@googletest//:gtest_main"],
 )
 
-sh_test(
+compatible_sh_test(
     name = "binary_test",
     timeout = "short",
     srcs = [":time_test_binary"],
