@@ -6,7 +6,7 @@ module(
     version = "0.0.0",
 )
 
-bazel_dep(name = "libc_replacer", version = "0.0.0")
+bazel_dep(name = "libc_replacer", version = "")
 local_path_override(
     module_name = "libc_replacer",
     path = "..",
@@ -33,3 +33,5 @@ register_toolchains(
     "@zig_sdk//toolchain:windows_amd64",
     "@zig_sdk//toolchain:windows_arm64",
 )
+
+bazel_dep(name = "googletest", version = "1.15.2")

@@ -13,6 +13,28 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  example:
+    strategy:
+      matrix:
+        bazel-version:
+          - 7.x
+        runner:
+          - ubuntu-20.04
+          - ubuntu-22.04
+    runs-on: ${{ matrix.runner }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+      - name: Set up
+        uses: ./.github/actions/setup
+        with:
+          bazel-version: ${{ matrix.bazel-version }}
+      - name: Validate example
+        shell: bash
+        run: ./development/cli/validate_example.bash
+
   style-check:
     runs-on: ubuntu-latest
     steps:
@@ -38,6 +60,7 @@ jobs:
   all-tests-passable:
     if: always()
     needs:
+      - example
       - style-check
     runs-on: ubuntu-latest
     steps:
