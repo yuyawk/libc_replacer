@@ -11,8 +11,7 @@ def compatible_sh_test(**kwargs):
     """
 
     # A windows executable need the extension ".exe"
-    if native.repository_os.name == "windows":
-        kwargs["name"] += ".exe"
+    kwargs["name"] += ".exe"
 
     native.sh_test(
         **kwargs
