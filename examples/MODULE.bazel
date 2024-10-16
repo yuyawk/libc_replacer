@@ -6,7 +6,7 @@ module(
     version = "0.0.0",
 )
 
-bazel_dep(name = "libc_replacer", version = "0.0.0")
+bazel_dep(name = "libc_replacer", version = "")
 local_path_override(
     module_name = "libc_replacer",
     path = "..",
@@ -34,4 +34,12 @@ register_toolchains(
     "@zig_sdk//toolchain:windows_arm64",
 )
 
+# For facilitating tests in C++
+# Not using `bazel_dep` because googletest module uses `use_repo_rule`
+# which is not supported in Bazel 6.x
 bazel_dep(name = "googletest", version = "1.15.2")
+archive_override(
+    module_name = "googletest",
+    urls = ["https://github.com/google/googletest/releases/download/v1.15.2/googletest-1.15.2.tar.gz"],
+    strip_prefix = "googletest-1.15.2",
+)
