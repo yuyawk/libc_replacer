@@ -13,6 +13,7 @@ jobs:
         workspace-root:
           - "examples"
           - "."
+          - "development/clang_tidy"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
