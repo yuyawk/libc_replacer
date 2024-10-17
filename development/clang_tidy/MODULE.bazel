@@ -12,5 +12,8 @@ clang_tidy_deps = use_extension(
     "//:ext.bzl",
     "clang_tidy_deps",
 )
-use_repo(clang_tidy_deps, "bazel_clang_tidy")
-use_repo(clang_tidy_deps, "llvm_toolchain_llvm")
+use_repo(
+    clang_tidy_deps,
+    "bazel_clang_tidy",
+    "llvm_toolchain_llvm",
+)
