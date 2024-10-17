@@ -13,5 +13,4 @@ clang_tidy_deps = use_extension(
     "clang_tidy_deps",
 )
 use_repo(clang_tidy_deps, "bazel_clang_tidy")
-
 use_repo(clang_tidy_deps, "llvm_toolchain_llvm")
