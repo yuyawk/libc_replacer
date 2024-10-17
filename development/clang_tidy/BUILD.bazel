@@ -1,5 +1,20 @@
-filegroup(
+alias(
+    name = "clang_tidy_executable",
+    actual = "@bazel_clang_tidy//:clang_tidy_executable",
+)
+
+alias(
     name = "clang_tidy_config",
+    actual = "@bazel_clang_tidy//:clang_tidy_config",
+)
+
+alias(
+    name = "clang_tidy_executable_setting",
+    actual = "@llvm_toolchain_llvm//:clang-tidy",
+)
+
+filegroup(
+    name = "clang_tidy_config_setting",
     srcs = [
         ".clang-tidy",
     ],

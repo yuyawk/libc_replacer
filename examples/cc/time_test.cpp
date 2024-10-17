@@ -6,9 +6,10 @@
 namespace
 {
 
-    time_t MockTime(time_t * /* tloc */)
+    auto MockTime(time_t * /* tloc */) noexcept -> time_t
     {
-        return 123;
+        static constexpr time_t mock_time{123};
+        return mock_time;
     }
 
 }

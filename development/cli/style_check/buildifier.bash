@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 #
-# Code style checker (linter and formatter)
+# Execute buildifier.
 
 set -euo pipefail
 
 SCRIPT_DIR=$(cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd)
-source "${SCRIPT_DIR}/common.bash"
+source "${SCRIPT_DIR}/../common.bash"
 
 cd "${REPO_ROOT_DIR}"
 
@@ -16,5 +16,3 @@ buildifier_targets="$(
 )"
 
 "${BAZEL_EXECUTABLE[@]}" run -- @buildifier_prebuilt//:buildifier -lint=fix ${buildifier_targets}
-
-"${BAZEL_EXECUTABLE[@]}" build //... --config clang-tidy
