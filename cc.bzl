@@ -1,4 +1,4 @@
-"""The only user-facing bzl file.
+"""bzl file to re-export user-facing C/C++ implementations.
 """
 
 load(
