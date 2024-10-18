@@ -4,12 +4,8 @@
 #include "libc_replacer/cc/internal/macro_impl.h"
 #include <stdatomic.h>
 
-/// @brief Implementation of @c LIBC_REPLACER_INTERNAL_ANNOTATE.
-#define LIBC_REPLACER_INTERNAL_ANNOTATE_IMPL(...)
 /// @brief Macro for annotation.
-#define LIBC_REPLACER_INTERNAL_ANNOTATE(...)                                   \
-  LIBC_REPLACER_INTERNAL_ANNOTATE_IMPL("dummy argument to prevent zero args",  \
-                                       __VA_ARGS__)
+#define LIBC_REPLACER_INTERNAL_ANNOTATE()
 
 /// @brief Define replacer functions of a libc API.
 /// @param library Name of the libc API to replace.
