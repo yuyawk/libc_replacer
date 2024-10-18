@@ -41,6 +41,7 @@ jobs:
       matrix:
         style-checker:
           - buildifier.bash
+          - clang_format.bash
           - clang_tidy_example.bash
           - clang_tidy_root.bash
     steps:

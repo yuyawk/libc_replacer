@@ -39,9 +39,9 @@ register_toolchains(
 # `buildifier_prebuilt` for buildifier
 bazel_dep(name = "buildifier_prebuilt", version = "7.3.1", dev_dependency = True)
 
-# `clang_tidy` for clang-tidy
-bazel_dep(name = "clang_tidy", version = "", dev_dependency = True)
+# `clang_tools` for clang-tidy and clang-format
+bazel_dep(name = "clang_tools", version = "", dev_dependency = True)
 local_path_override(
-    module_name = "clang_tidy",
-    path = "development/clang_tidy",
+    module_name = "clang_tools",
+    path = "development/clang_tools",
 )

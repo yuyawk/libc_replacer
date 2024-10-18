@@ -5,7 +5,7 @@ load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
 load("@toolchains_llvm//toolchain:deps.bzl", "bazel_toolchain_dependencies")
 load("@toolchains_llvm//toolchain:rules.bzl", "llvm_toolchain")
 
-def _clang_tidy_deps_impl(_module_ctx):
+def _clang_tools_deps_impl(_module_ctx):
     """Pull dependencies.
 
     Args:
@@ -24,6 +24,6 @@ def _clang_tidy_deps_impl(_module_ctx):
         llvm_version = "19.1.0",
     )
 
-clang_tidy_deps = module_extension(
-    implementation = _clang_tidy_deps_impl,
+clang_tools_deps = module_extension(
+    implementation = _clang_tools_deps_impl,
 )

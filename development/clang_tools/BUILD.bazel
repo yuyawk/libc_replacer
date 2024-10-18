@@ -19,3 +19,8 @@ filegroup(
         ".clang-tidy",
     ],
 )
+
+alias(
+    name = "clang_format",
+    actual = "@llvm_toolchain_llvm//:bin/clang-format",
+)
