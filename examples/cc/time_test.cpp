@@ -17,4 +17,6 @@ GTEST_TEST(TimeTest, ReplaceTime) {
   const auto got = time(nullptr);
   libc_replacer_reset_time();
   GTEST_ASSERT_EQ(got, 123);
+  const auto got_after_reset = time(nullptr);
+  GTEST_ASSERT_NE(got_after_reset, 123);
 }
