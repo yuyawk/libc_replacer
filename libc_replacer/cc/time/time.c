@@ -1,5 +1,5 @@
-#include "libc_replacer/cc/internal/definition_helper.h"
 #include "libc_replacer/cc/time/time.h" // IWYU pragma: associated
+#include "libc_replacer/cc/internal/definition_helper.h"
 
 #include <time.h>
 
