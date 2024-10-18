@@ -13,29 +13,15 @@ local_path_override(
 )
 
 # Register toolchain for C/C++
-
-bazel_dep(
-    name = "hermetic_cc_toolchain",
-    version = "3.1.1",
+# `toolchains_musl` for C/C++ toolchain
+bazel_dep(name = "toolchains_musl", version = "0.1.20", dev_dependency = True)
+toolchains_musl = use_extension(
+    "@toolchains_musl//:toolchains_musl.bzl",
+    "toolchains_musl",
     dev_dependency = True,
 )
-
-cc_toolchains = use_extension(
-    "@hermetic_cc_toolchain//toolchain:ext.bzl",
-    "toolchains",
-    dev_dependency = True,
-)
-use_repo(cc_toolchains, "zig_sdk")
-
-register_toolchains(
-    "@zig_sdk//toolchain:linux_amd64_gnu.2.31",
-    "@zig_sdk//toolchain:linux_arm64_gnu.2.31",
-    "@zig_sdk//toolchain:darwin_amd64",
-    "@zig_sdk//toolchain:darwin_arm64",
-    "@zig_sdk//toolchain:windows_amd64",
-    "@zig_sdk//toolchain:windows_arm64",
-    dev_dependency = True,
-)
+use_repo(toolchains_musl, "musl_toolchains_hub")
+register_toolchains("@musl_toolchains_hub//:all", dev_dependency = True)
 
 # Utility for testing C++ code
 bazel_dep(name = "googletest", version = "1.15.2", dev_dependency = True)
