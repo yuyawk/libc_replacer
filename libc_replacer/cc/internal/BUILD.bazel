@@ -3,6 +3,10 @@
 
 cc_library(
     name = "internal",
-    hdrs = ["internal.h"],
+    hdrs = [
+        "declaration_helper.h",
+        "definition_helper.h",
+        "macro_impl.h",
+    ],
     visibility = ["//libc_replacer/cc:__subpackages__"],
 )
