@@ -19,6 +19,8 @@ jobs:
         bazel-version:
           - 7.x
         runner:
+          - macos-13
+          - macos-14
           - ubuntu-20.04
           - ubuntu-22.04
     runs-on: ${{ matrix.runner }}
