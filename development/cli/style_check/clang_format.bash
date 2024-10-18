@@ -15,4 +15,7 @@ clang_format_targets="$(
         xargs -I{} echo "$(pwd)/{}"
 )"
 
-"${BAZEL_EXECUTABLE[@]}" run -- @clang_tools//:clang_format -i ${clang_format_targets}
+"${BAZEL_EXECUTABLE[@]}" run -- @clang_tools//:clang_format \
+    -style=file \
+    --assume-filename="${REPO_ROOT_DIR}/.clang-format" \
+    -i ${clang_format_targets}
