@@ -1,5 +1,5 @@
 load(
-    "@libc_replacer//:defs.bzl",
+    "@libc_replacer//:cc.bzl",
     "cc_libc_replacer_binary",
     "cc_libc_replacer_test",
 )
