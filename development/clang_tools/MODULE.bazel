@@ -1,19 +1,19 @@
-"""Module for clang-tidy configuration internally used in this repository.
+"""Module for clang tools internally used in this repository.
 """
 
 module(
-    name = "clang_tidy",
+    name = "clang_tools",
     version = "0.0.0",
 )
 
 bazel_dep(name = "toolchains_llvm", version = "1.2.0")
 
-clang_tidy_deps = use_extension(
+clang_tools_deps = use_extension(
     "//:ext.bzl",
-    "clang_tidy_deps",
+    "clang_tools_deps",
 )
 use_repo(
-    clang_tidy_deps,
+    clang_tools_deps,
     "bazel_clang_tidy",
     "llvm_toolchain_llvm",
 )
