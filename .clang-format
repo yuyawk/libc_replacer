@@ -1,4 +1,4 @@
 ---
 BasedOnStyle: LLVM
 Language: Cpp
-CommentPragmas: "(NOLINT(NEXTLINE|BEGIN|END)|^ IWYU pragma:)"
+CommentPragmas: "(NOLINT|^ IWYU pragma:)"
