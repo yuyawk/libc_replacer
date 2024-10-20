@@ -17,6 +17,7 @@ jobs:
     strategy:
       matrix:
         bazel-version:
+          - 6.x
           - 7.x
         runner:
           - ubuntu-20.04
