@@ -41,16 +41,14 @@
 /// @param target_1 Target to apply the function macro.
 /// @param target_2 Target to apply the function macro.
 #define LIBC_REPLACER_INTERNAL_APPLY_2(macro, target_1, target_2)              \
-  LIBC_REPLACER_INTERNAL_APPLY_1(target_1),                                    \
-      LIBC_REPLACER_INTERNAL_APPLY_1(target_2)
+  macro(target_1), macro(target_2)
 /// @brief Apply a function macro to three arguments.
 /// @param macro Function macro to apply.
 /// @param target_1 Target to apply the function macro.
 /// @param target_2 Target to apply the function macro.
 /// @param target_3 Target to apply the function macro.
 #define LIBC_REPLACER_INTERNAL_APPLY_3(macro, target_1, target_2, target_3)    \
-  LIBC_REPLACER_INTERNAL_APPLY_1(target_1),                                    \
-      LIBC_REPLACER_INTERNAL_APPLY_2(target_2, target_3)
+  macro(target_1), macro(target_2), macro(target_3)
 /// @brief Apply a function macro to four arguments.
 /// @param macro Function macro to apply.
 /// @param target_1 Target to apply the function macro.
@@ -59,8 +57,7 @@
 /// @param target_4 Target to apply the function macro.
 #define LIBC_REPLACER_INTERNAL_APPLY_4(macro, target_1, target_2, target_3,    \
                                        target_4)                               \
-  LIBC_REPLACER_INTERNAL_APPLY_1(target_1),                                    \
-      LIBC_REPLACER_INTERNAL_APPLY_3(target_2, target_3, target_4)
+  macro(target_1), macro(target_2), macro(target_3), macro(target_4)
 /// @brief Apply a function macro to five arguments.
 /// @param macro Function macro to apply.
 /// @param target_1 Target to apply the function macro.
@@ -70,8 +67,8 @@
 /// @param target_5 Target to apply the function macro.
 #define LIBC_REPLACER_INTERNAL_APPLY_5(macro, target_1, target_2, target_3,    \
                                        target_4, target_5)                     \
-  LIBC_REPLACER_INTERNAL_APPLY_1(target_1),                                    \
-      LIBC_REPLACER_INTERNAL_APPLY_4(target_2, target_3, target_4, target_5)
+  macro(target_1), macro(target_2), macro(target_3), macro(target_4),          \
+      macro(target_5)
 
 /// @brief Implementation of @c LIBC_REPLACER_INTERNAL_COUNT.
 #define LIBC_REPLACER_INTERNAL_COUNT_IMPL(_1, _2, _3, _4, _5, number, ...)     \
