@@ -5,6 +5,7 @@
 
 #include <time.h>
 
+// NOLINTNEXTLINE(readability-identifier-length)
 LIBC_REPLACER_INTERNAL_DECLARE(timespec_get, int, (struct timespec *, ts),
                                (int, base))
 

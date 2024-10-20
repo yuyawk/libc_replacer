@@ -6,32 +6,32 @@
 static const time_t mock_tv_sec_value = 123;
 static const long mock_tv_nsec_value = 123000000000L;
 
-static int mock_timespec_get(struct timespec *ts, int base) {
-  ts->tv_sec = mock_tv_sec_value;
-  ts->tv_nsec = mock_tv_nsec_value;
+static int mock_timespec_get(struct timespec *ts_ptr, int base) {
+  ts_ptr->tv_sec = mock_tv_sec_value;
+  ts_ptr->tv_nsec = mock_tv_nsec_value;
   return base;
 }
 
 int main(void) {
   // Check if the API is replaced
   libc_replacer_overwrite_timespec_get(mock_timespec_get);
-  struct timespec ts = {0};
+  struct timespec ts_value = {0};
   const int base = 1234;
-  const int got = timespec_get(&ts, base);
+  const int got = timespec_get(&ts_value, base);
   assert(got == base);
-  assert(ts.tv_sec == mock_tv_sec_value);
-  assert(ts.tv_nsec == mock_tv_nsec_value);
+  assert(ts_value.tv_sec == mock_tv_sec_value);
+  assert(ts_value.tv_nsec == mock_tv_nsec_value);
 
   // Check the values after resetting
   libc_replacer_reset_timespec_get();
-  ts.tv_sec = 0;
-  ts.tv_nsec = 0;
+  ts_value.tv_sec = 0;
+  ts_value.tv_nsec = 0;
   const int new_base = 12;
   assert(base != new_base); // invariant
-  const int got_after_reset = timespec_get(&ts, new_base);
+  const int got_after_reset = timespec_get(&ts_value, new_base);
   assert(got_after_reset != base);
-  assert(ts.tv_sec != mock_tv_sec_value);
-  assert(ts.tv_nsec != mock_tv_nsec_value);
+  assert(ts_value.tv_sec != mock_tv_sec_value);
+  assert(ts_value.tv_nsec != mock_tv_nsec_value);
 
   return 0;
 }
