@@ -28,9 +28,6 @@ register_toolchains(
     dev_dependency = True,
 )
 
-# Utility for testing C++ code
-bazel_dep(name = "googletest", version = "1.15.2", dev_dependency = True)
-
 # `clang_tools` for clang-tidy
 bazel_dep(name = "clang_tools", version = "", dev_dependency = True)
 local_path_override(

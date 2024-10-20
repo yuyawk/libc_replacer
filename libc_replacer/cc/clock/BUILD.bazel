@@ -1,0 +1,11 @@
+"""C/C++ implementations to replace `clock`.
+"""
+
+cc_library(
+    name = "clock",
+    srcs = ["clock.c"],
+    hdrs = ["clock.h"],
+    linkopts = ["-Wl,-wrap=clock"],
+    visibility = ["//libc_replacer/cc:__pkg__"],
+    deps = ["//libc_replacer/cc/internal"],
+)
