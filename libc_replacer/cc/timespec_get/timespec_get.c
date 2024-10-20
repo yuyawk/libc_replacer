@@ -3,5 +3,5 @@
 
 #include <time.h>
 
-LIBC_REPLACER_INTERNAL_DEFINE(timespec_get, int, (struct timespec *, ts),
+LIBC_REPLACER_INTERNAL_DEFINE(timespec_get, int, (struct timespec *, ts_ptr),
                               (int, base))
