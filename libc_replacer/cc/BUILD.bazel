@@ -10,6 +10,7 @@ cc_library(
     visibility = ["//visibility:public"],
     deps = [
         "//libc_replacer/cc/clock",
+        "//libc_replacer/cc/malloc",
         "//libc_replacer/cc/time",
         "//libc_replacer/cc/timespec_get",
     ],
