@@ -17,7 +17,6 @@ int main(void) {
   free(&value_local);
   assert(value_local == dummy);
 
-  // Check the value after resetting
   libc_replacer_reset_free();
   return 0;
 }
