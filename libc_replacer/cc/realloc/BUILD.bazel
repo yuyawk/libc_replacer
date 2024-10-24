@@ -1,11 +1,11 @@
 """C/C++ implementations to replace `realloc`.
 """
 
-cc_library(
+filegroup(
     name = "realloc",
-    srcs = ["realloc.c"],
-    hdrs = ["realloc.h"],
-    linkopts = ["-Wl,-wrap=realloc"],
-    visibility = ["//libc_replacer/cc:__pkg__"],
-    deps = ["//libc_replacer/cc/internal"],
+    srcs = [
+        "realloc.c",
+        "realloc.h",
+    ],
+    visibility = ["//visibility:public"],
 )

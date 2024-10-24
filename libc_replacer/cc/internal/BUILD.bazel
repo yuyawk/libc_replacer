@@ -1,12 +1,12 @@
 """Internal C/C++ implementations.
 """
 
-cc_library(
+filegroup(
     name = "internal",
-    hdrs = [
+    srcs = [
         "declaration_helper.h",
         "definition_helper.h",
         "macro_impl.h",
     ],
-    visibility = ["//libc_replacer/cc:__subpackages__"],
+    visibility = ["//visibility:public"],
 )

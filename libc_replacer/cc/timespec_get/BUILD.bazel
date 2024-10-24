@@ -1,11 +1,11 @@
 """C/C++ implementations to replace `time`.
 """
 
-cc_library(
+filegroup(
     name = "timespec_get",
-    srcs = ["timespec_get.c"],
-    hdrs = ["timespec_get.h"],
-    linkopts = ["-Wl,-wrap=timespec_get"],
-    visibility = ["//libc_replacer/cc:__pkg__"],
-    deps = ["//libc_replacer/cc/internal"],
+    srcs = [
+        "timespec_get.c",
+        "timespec_get.h",
+    ],
+    visibility = ["//visibility:public"],
 )

@@ -1,11 +1,11 @@
 """C/C++ implementations to replace `free`.
 """
 
-cc_library(
+filegroup(
     name = "free",
-    srcs = ["free.c"],
-    hdrs = ["free.h"],
-    linkopts = ["-Wl,-wrap=free"],
-    visibility = ["//libc_replacer/cc:__pkg__"],
-    deps = ["//libc_replacer/cc/internal"],
+    srcs = [
+        "free.c",
+        "free.h",
+    ],
+    visibility = ["//visibility:public"],
 )

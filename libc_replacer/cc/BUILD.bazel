@@ -8,13 +8,4 @@ cc_library(
     # in order to use `-I` and have the user include the header with `<>`
     include_prefix = "libc_replacer/cc",
     visibility = ["//visibility:public"],
-    deps = [
-        "//libc_replacer/cc/calloc",
-        "//libc_replacer/cc/clock",
-        "//libc_replacer/cc/free",
-        "//libc_replacer/cc/malloc",
-        "//libc_replacer/cc/realloc",
-        "//libc_replacer/cc/time",
-        "//libc_replacer/cc/timespec_get",
-    ],
 )

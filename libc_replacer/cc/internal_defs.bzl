@@ -18,8 +18,32 @@ def _get_modified_kwargs(kwargs_dict):
     kwargs_dict["features"] = kwargs_dict.pop("features", []) + ["fully_static_link"]
     kwargs_dict["linkstatic"] = True
 
-    # Append all libc replacer implementations to `deps`
-    kwargs_dict["deps"] = kwargs_dict.pop("deps", []) + [Label("//libc_replacer/cc")]
+    LIBRARIES = [
+        "calloc",
+        "clock",
+        "free",
+        "malloc",
+        "realloc",
+        "time",
+        "timespec_get",
+    ]
+
+    # Append all libc replacer implementations and linker options
+    kwargs_dict["srcs"] = kwargs_dict.pop("srcs", []) + [
+        Label("//libc_replacer/cc/{}".format(library))
+        for library in LIBRARIES
+    ] + [
+        Label("//libc_replacer/cc/internal"),
+    ]
+
+    kwargs_dict["linkopts"] = kwargs_dict.pop("linkopts", []) + [
+        "-Wl,-wrap={}".format(library)
+        for library in LIBRARIES
+    ]
+
+    kwargs_dict["deps"] = kwargs_dict.pop("deps", []) + [
+        Label("//libc_replacer/cc"),
+    ]
 
     return kwargs_dict
 
