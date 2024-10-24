@@ -1,0 +1,11 @@
+"""C/C++ implementations to replace `calloc`.
+"""
+
+cc_library(
+    name = "calloc",
+    srcs = ["calloc.c"],
+    hdrs = ["calloc.h"],
+    linkopts = ["-Wl,-wrap=calloc"],
+    visibility = ["//libc_replacer/cc:__pkg__"],
+    deps = ["//libc_replacer/cc/internal"],
+)

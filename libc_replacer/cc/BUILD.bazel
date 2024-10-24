@@ -9,6 +9,7 @@ cc_library(
     include_prefix = "libc_replacer/cc",
     visibility = ["//visibility:public"],
     deps = [
+        "//libc_replacer/cc/calloc",
         "//libc_replacer/cc/clock",
         "//libc_replacer/cc/free",
         "//libc_replacer/cc/malloc",

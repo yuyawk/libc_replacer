@@ -13,6 +13,7 @@ int main(void) {
   libc_replacer_overwrite_realloc(mock_realloc);
   const size_t size = 10;
   size_t value = 0;
+  // NOLINTNEXTLINE(clang-analyzer-unix.Malloc)
   const void *got = realloc(&value, size);
   assert(got == &value);
   assert(value == size);
