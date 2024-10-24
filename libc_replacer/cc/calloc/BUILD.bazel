@@ -1,0 +1,11 @@
+"""C/C++ implementations to replace `calloc`.
+"""
+
+filegroup(
+    name = "calloc",
+    srcs = [
+        "calloc.c",
+        "calloc.h",
+    ],
+    visibility = ["//visibility:public"],
+)
