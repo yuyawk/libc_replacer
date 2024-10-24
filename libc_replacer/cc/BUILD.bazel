@@ -1,11 +1,16 @@
 """Define public include point.
 """
 
-cc_library(
+filegroup(
     name = "cc",
-    hdrs = ["interface.h"],
-    # Explicitly set `include_prefix`
-    # in order to use `-I` and have the user include the header with `<>`
-    include_prefix = "libc_replacer/cc",
+    srcs = ["interface.h"],
+    visibility = ["//visibility:public"],
+)
+
+cc_library(
+    name = "adding_include_prefix",
+    # Explicitly set `includes`
+    # in order to allow the user to include `<libc_replacer/cc/interface.h>`
+    includes = ["../.."],
     visibility = ["//visibility:public"],
 )

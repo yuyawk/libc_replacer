@@ -36,6 +36,7 @@ def _get_modified_kwargs(kwargs_dict):
         for library in LIBRARIES
     ] + [
         Label("//libc_replacer/cc/internal"),
+        Label("//libc_replacer/cc"),
     ]
 
     kwargs_dict["linkopts"] = kwargs_dict.pop("linkopts", []) + [
@@ -44,7 +45,7 @@ def _get_modified_kwargs(kwargs_dict):
     ]
 
     kwargs_dict["deps"] = kwargs_dict.pop("deps", []) + [
-        Label("//libc_replacer/cc"),
+        Label("//libc_replacer/cc:adding_include_prefix"),
     ]
 
     return kwargs_dict
