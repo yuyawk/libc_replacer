@@ -3,8 +3,6 @@
 
 #include "libc_replacer/cc/internal/declaration_helper.h"
 
-#include <stdlib.h>
-
 LIBC_REPLACER_INTERNAL_DECLARE(free, void, (void *, ptr))
 
 #endif // INCLUDE_GUARD_LIBC_REPLACER_CC_FREE_FREE_H_
