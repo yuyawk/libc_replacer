@@ -7,6 +7,8 @@ visibility("//...")
 def _get_modified_kwargs(kwargs_dict):
     """Get the value of `kwargs` modified for libc replacer.
 
+    TODO: Elaborate the intent of filegroups
+
     Args:
         kwargs_dict(dict[str, Any]): `kwargs` passed as a dict.
 
