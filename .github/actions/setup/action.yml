@@ -13,7 +13,7 @@ runs:
       shell: bash
       run: |
         echo "USE_BAZEL_VERSION=${BAZEL_VERSION}" > .bazeliskrc
-        echo "USE_BAZEL_VERSION=${BAZEL_VERSION}" > integration_test_bazel/.bazeliskrc
+        echo "USE_BAZEL_VERSION=${BAZEL_VERSION}" > integration_test/bazel/.bazeliskrc
       env:
         BAZEL_VERSION: ${{ inputs.bazel-version }}
     - name: Install bazelisk
