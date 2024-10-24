@@ -1,0 +1,11 @@
+"""C/C++ implementations to replace `malloc`.
+"""
+
+cc_library(
+    name = "malloc",
+    srcs = ["malloc.c"],
+    hdrs = ["malloc.h"],
+    linkopts = ["-Wl,-wrap=malloc"],
+    visibility = ["//libc_replacer/cc:__pkg__"],
+    deps = ["//libc_replacer/cc/internal"],
+)
