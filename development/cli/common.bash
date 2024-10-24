@@ -24,7 +24,7 @@ BAZEL_EXECUTABLE=(
 # Default Bazel version
 BAZEL_VERSION_DEFAULT="7.x"
 
-for root_dir in "${REPO_ROOT_DIR}" "${REPO_ROOT_DIR}/examples"; do
+for root_dir in "${REPO_ROOT_DIR}" "${REPO_ROOT_DIR}/integration_test_bazel"; do
     if [[ ! -f "${root_dir}/.bazeliskrc" ]]; then
         if [[ "${CI:-}" == "true" ]]; then
             echo "ERROR: Explicitly specify Bazel version on CI" >&2

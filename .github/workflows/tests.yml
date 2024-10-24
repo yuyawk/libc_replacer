@@ -13,7 +13,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  example:
+  integration-test:
     strategy:
       matrix:
         bazel-version:
@@ -31,9 +31,9 @@ jobs:
         uses: ./.github/actions/setup
         with:
           bazel-version: ${{ matrix.bazel-version }}
-      - name: Validate example
+      - name: Integration test
         shell: bash
-        run: ./development/cli/validate_example.bash
+        run: ./development/cli/run_integration_test.bash
 
   style-check:
     runs-on: ubuntu-latest
@@ -42,7 +42,7 @@ jobs:
         style-checker:
           - buildifier.bash
           - clang_format.bash
-          - clang_tidy_example.bash
+          - clang_tidy_integration_test.bash
           - clang_tidy_root.bash
     steps:
       - name: Checkout
@@ -69,7 +69,7 @@ jobs:
   all-tests-passable:
     if: always()
     needs:
-      - example
+      - integration-test
       - style-check
     runs-on: ubuntu-latest
     steps:

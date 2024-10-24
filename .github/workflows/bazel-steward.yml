@@ -11,7 +11,7 @@ jobs:
     strategy:
       matrix:
         workspace-root:
-          - "examples"
+          - "integration_test_bazel"
           - "."
           - "development/clang_tools"
     runs-on: ubuntu-latest

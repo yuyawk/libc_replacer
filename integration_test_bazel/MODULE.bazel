@@ -2,7 +2,7 @@
 """
 
 module(
-    name = "libc_replacer_examples",
+    name = "libc_replacer_integration_test_bazel",
     version = "0.0.0",
 )
 
