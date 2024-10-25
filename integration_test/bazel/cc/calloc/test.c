@@ -29,8 +29,8 @@ int main(void) {
 
   // Check the value after resetting
   libc_replacer_reset_calloc();
-  size_t nmemb_got = val_init;
-  size_t size_got = val_init;
+  nmemb_got = val_init;
+  size_got = val_init;
   void *got_after_reset = calloc(nmemb, size);
   assert(got_after_reset != NULL);
   assert(nmemb_got == val_init);
