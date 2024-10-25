@@ -3,6 +3,7 @@
 #include <assert.h>
 #include <stdlib.h>
 
+// NOLINTNEXTLINE(bugprone-easily-swappable-parameters)
 static void *mock_calloc(size_t nmemb, size_t size) {
   (void)nmemb;
   (void)size;
@@ -21,6 +22,7 @@ int main(void) {
   libc_replacer_reset_calloc();
   const void *got_after_reset = calloc(nmemb, size);
   assert(got_after_reset != NULL);
+  free(got_after_reset);
 
   return 0;
 }

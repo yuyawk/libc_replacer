@@ -19,8 +19,8 @@ int main(void) {
   // Check the value after resetting
   libc_replacer_reset_malloc();
   const void *got_after_reset = malloc(value_size);
-  // NOLINTNEXTLINE(clang-analyzer-unix.Malloc,performance-no-int-to-ptr)
   assert(got_after_reset != (void *)value_size);
+  free(got_after_reset);
 
   return 0;
 }
