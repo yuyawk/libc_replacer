@@ -7,19 +7,12 @@ visibility("//...")
 def _get_modified_kwargs(kwargs_dict):
     """Get the value of `kwargs` modified for libc replacer.
 
-    TODO: Elaborate the intent of filegroups
-
     Args:
         kwargs_dict(dict[str, Any]): `kwargs` passed as a dict.
 
     Returns:
         The value of `kwargs` modified for libc replacer.
     """
-
-    # Fully static link to all libraries, to make sure every libc API is completely replaced
-    kwargs_dict["features"] = kwargs_dict.pop("features", []) + ["fully_static_link"]
-    kwargs_dict["linkstatic"] = True
-
     LIBRARIES = [
         "calloc",
         "clock",
@@ -30,22 +23,15 @@ def _get_modified_kwargs(kwargs_dict):
         "timespec_get",
     ]
 
-    # Append all libc replacer implementations and linker options
-    kwargs_dict["srcs"] = kwargs_dict.pop("srcs", []) + [
-        Label("//libc_replacer/cc/{}".format(library))
-        for library in LIBRARIES
-    ] + [
-        Label("//libc_replacer/cc/internal"),
-        Label("//libc_replacer/cc"),
-    ]
+    # Fully static link to all libraries, to make sure every libc API is completely replaced
+    kwargs_dict["features"] = kwargs_dict.pop("features", []) + ["fully_static_link"]
+    kwargs_dict["linkstatic"] = True
 
+    # Append all libc replacer implementations and linker options to `deps`
+    kwargs_dict["deps"] = kwargs_dict.pop("deps", []) + [Label("//libc_replacer/cc")]
     kwargs_dict["linkopts"] = kwargs_dict.pop("linkopts", []) + [
         "-Wl,-wrap={}".format(library)
         for library in LIBRARIES
-    ]
-
-    kwargs_dict["deps"] = kwargs_dict.pop("deps", []) + [
-        Label("//libc_replacer/cc:adding_include_prefix"),
     ]
 
     return kwargs_dict

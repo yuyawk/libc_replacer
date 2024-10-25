@@ -1,11 +1,11 @@
 """C/C++ implementations to replace `calloc`.
 """
 
-filegroup(
+cc_library(
     name = "calloc",
-    srcs = [
-        "calloc.c",
-        "calloc.h",
-    ],
-    visibility = ["//visibility:public"],
+    srcs = ["calloc.c"],
+    hdrs = ["calloc.h"],
+    visibility = ["//libc_replacer/cc:__pkg__"],
+    deps = ["//libc_replacer/cc/internal"],
+    alwayslink = True,
 )

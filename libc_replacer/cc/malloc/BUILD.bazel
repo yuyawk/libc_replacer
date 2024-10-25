@@ -1,11 +1,11 @@
 """C/C++ implementations to replace `malloc`.
 """
 
-filegroup(
+cc_library(
     name = "malloc",
-    srcs = [
-        "malloc.c",
-        "malloc.h",
-    ],
-    visibility = ["//visibility:public"],
+    srcs = ["malloc.c"],
+    hdrs = ["malloc.h"],
+    visibility = ["//libc_replacer/cc:__pkg__"],
+    deps = ["//libc_replacer/cc/internal"],
+    alwayslink = True,
 )

@@ -1,11 +1,11 @@
 """C/C++ implementations to replace `time`.
 """
 
-filegroup(
+cc_library(
     name = "time",
-    srcs = [
-        "time.c",
-        "time.h",
-    ],
-    visibility = ["//visibility:public"],
+    srcs = ["time.c"],
+    hdrs = ["time.h"],
+    visibility = ["//libc_replacer/cc:__pkg__"],
+    deps = ["//libc_replacer/cc/internal"],
+    alwayslink = True,
 )
