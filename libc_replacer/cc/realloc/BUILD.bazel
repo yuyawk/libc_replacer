@@ -5,6 +5,7 @@ cc_library(
     name = "realloc",
     srcs = ["realloc.c"],
     hdrs = ["realloc.h"],
+    linkopts = ["-Wl,-wrap=realloc"],
     visibility = ["//libc_replacer/cc:__pkg__"],
     deps = ["//libc_replacer/cc/internal"],
     alwayslink = True,

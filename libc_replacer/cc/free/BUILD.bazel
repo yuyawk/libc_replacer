@@ -5,6 +5,7 @@ cc_library(
     name = "free",
     srcs = ["free.c"],
     hdrs = ["free.h"],
+    linkopts = ["-Wl,-wrap=free"],
     visibility = ["//libc_replacer/cc:__pkg__"],
     deps = ["//libc_replacer/cc/internal"],
     alwayslink = True,

@@ -13,26 +13,13 @@ def _get_modified_kwargs(kwargs_dict):
     Returns:
         The value of `kwargs` modified for libc replacer.
     """
-    LIBRARIES = [
-        "calloc",
-        "clock",
-        "free",
-        "malloc",
-        "realloc",
-        "time",
-        "timespec_get",
-    ]
 
     # Fully static link to all libraries, to make sure every libc API is completely replaced
     kwargs_dict["features"] = kwargs_dict.pop("features", []) + ["fully_static_link"]
     kwargs_dict["linkstatic"] = True
 
-    # Append all libc replacer implementations and linker options to `deps`
+    # Append all libc replacer implementations to `deps`
     kwargs_dict["deps"] = kwargs_dict.pop("deps", []) + [Label("//libc_replacer/cc")]
-    kwargs_dict["linkopts"] = kwargs_dict.pop("linkopts", []) + [
-        "-Wl,-wrap={}".format(library)
-        for library in LIBRARIES
-    ]
 
     return kwargs_dict
 
