@@ -18,7 +18,7 @@ int main(void) {
   // Check if the API is replaced
   libc_replacer_overwrite_realloc(mock_realloc);
   const size_t size = 6;
-  // Note: Avoid providing a `NULL` constant to prevent compiler
+  // Note: Avoid providing a `NULL` constant to prevent the compiler
   // from optimizing `realloc(NULL, size)` to `malloc(size)`
   void *ptr = NULL;
   const void *got = realloc(ptr, size);
