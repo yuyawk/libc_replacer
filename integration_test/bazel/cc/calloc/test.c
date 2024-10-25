@@ -4,7 +4,9 @@
 #include <stdlib.h>
 
 static const size_t val_init = 0;
+// NOLINTNEXTLINE(cppcoreguidelines-avoid-non-const-global-variables)
 static size_t nmemb_got = val_init;
+// NOLINTNEXTLINE(cppcoreguidelines-avoid-non-const-global-variables)
 static size_t size_got = val_init;
 
 // NOLINTNEXTLINE(bugprone-easily-swappable-parameters)

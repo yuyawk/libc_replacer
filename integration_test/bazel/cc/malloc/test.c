@@ -4,6 +4,7 @@
 #include <stdlib.h>
 
 static const size_t size_init = 0;
+// NOLINTNEXTLINE(cppcoreguidelines-avoid-non-const-global-variables)
 static size_t size_got = size_init;
 
 static void *mock_malloc(size_t size) {
