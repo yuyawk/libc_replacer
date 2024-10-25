@@ -122,7 +122,7 @@
 /// @c ret_t is @c void.
 #define LIBC_REPLACER_INTERNAL_RETURN_IF_NOT_VOID_TWO_PARAMETERS_IF_VOID_voidvoid \
   foo, bar
-/// @brief Empty if @c ret_t is @c void.
+/// @brief Evaluate to two parameters if @c ret_t is @c void.
 /// @details Concatenating @c ret_t twice to distinguish @c void and @c void*.
 /// @param ret_t Type argument to be checked
 #define LIBC_REPLACER_INTERNAL_RETURN_IF_NOT_VOID_TWO_PARAMETERS_IF_VOID(      \
@@ -136,10 +136,9 @@
 /// @brief Evaluated value of @c LIBC_REPLACER_INTERNAL_RETURN_IF_NOT_VOID when
 /// the argument is not @c void.
 #define LIBC_REPLACER_INTERNAL_RETURN_IF_NOT_VOID_EVALUATED_VALUE_1 return
-/// @brief Evaluates to 2 if @c ret_t is @c void, 1 otherwise.
+/// @brief Evaluate to 2 if @c ret_t is @c void, 1 otherwise.
 /// @param ret_t Type argument to be checked.
-#define LIBC_REPLACER_INTERNAL_RETURN_IF_NOT_VOID_EMPTY_COUNT_PARAMETERS(      \
-    ret_t)                                                                     \
+#define LIBC_REPLACER_INTERNAL_RETURN_IF_NOT_VOID_COUNT_PARAMETERS(ret_t)      \
   LIBC_REPLACER_INTERNAL_COUNT(                                                \
       LIBC_REPLACER_INTERNAL_RETURN_IF_NOT_VOID_TWO_PARAMETERS_IF_VOID(ret_t))
 /// @brief Append prefix to get the expression of evaluated value.
@@ -151,7 +150,7 @@
 /// @param ret_t Type argument to be checked.
 #define LIBC_REPLACER_INTERNAL_RETURN_IF_NOT_VOID(ret_t)                       \
   LIBC_REPLACER_INTERNAL_RETURN_IF_NOT_VOID_APPEND_PREFIX(                     \
-      LIBC_REPLACER_INTERNAL_RETURN_IF_NOT_VOID_EMPTY_COUNT_PARAMETERS(ret_t))
+      LIBC_REPLACER_INTERNAL_RETURN_IF_NOT_VOID_COUNT_PARAMETERS(ret_t))
 
 /// @brief Dummy type declaration.
 /// @details Declared because ISO C requires a translation unit to contain at
