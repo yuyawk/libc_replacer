@@ -107,6 +107,52 @@
   LIBC_REPLACER_INTERNAL_APPLY(                                                \
       LIBC_REPLACER_INTERNAL_GET_ARG_TYPE_AND_NAME_FROM_TUPLE, __VA_ARGS__)
 
+/// @brief Concatenate two values.
+/// @param p1 First parameter.
+/// @param p2 Second parameter.
+#define LIBC_REPLACER_INTERNAL_CONCATENATE_2(p1, p2) p1##p2
+/// @brief Concatenate three values.
+/// @param p1 First parameter.
+/// @param p2 Second parameter.
+/// @param p3 Third parameter.
+#define LIBC_REPLACER_INTERNAL_CONCATENATE_3(p1, p2, p3) p1##p2##p3
+
+/// @brief Value of
+/// @c LIBC_REPLACER_INTERNAL_RETURN_IF_NOT_VOID_TWO_PARAMETERS_IF_VOID when
+/// @c ret_t is @c void.
+#define LIBC_REPLACER_INTERNAL_RETURN_IF_NOT_VOID_TWO_PARAMETERS_IF_VOID_voidvoid \
+  foo, bar
+/// @brief Empty if @c ret_t is @c void.
+/// @details Concatenating @c ret_t twice to distinguish @c void and @c void*.
+/// @param ret_t Type argument to be checked
+#define LIBC_REPLACER_INTERNAL_RETURN_IF_NOT_VOID_TWO_PARAMETERS_IF_VOID(      \
+    ret_t)                                                                     \
+  LIBC_REPLACER_INTERNAL_CONCATENATE_3(                                        \
+      LIBC_REPLACER_INTERNAL_RETURN_IF_NOT_VOID_TWO_PARAMETERS_IF_VOID_,       \
+      ret_t, ret_t)
+/// @brief Evaluated value of @c LIBC_REPLACER_INTERNAL_RETURN_IF_NOT_VOID when
+/// the argument is @c void.
+#define LIBC_REPLACER_INTERNAL_RETURN_IF_NOT_VOID_EVALUATED_VALUE_2
+/// @brief Evaluated value of @c LIBC_REPLACER_INTERNAL_RETURN_IF_NOT_VOID when
+/// the argument is not @c void.
+#define LIBC_REPLACER_INTERNAL_RETURN_IF_NOT_VOID_EVALUATED_VALUE_1 return
+/// @brief Evaluates to 2 if @c ret_t is @c void, 1 otherwise.
+/// @param ret_t Type argument to be checked.
+#define LIBC_REPLACER_INTERNAL_RETURN_IF_NOT_VOID_EMPTY_COUNT_PARAMETERS(      \
+    ret_t)                                                                     \
+  LIBC_REPLACER_INTERNAL_COUNT(                                                \
+      LIBC_REPLACER_INTERNAL_RETURN_IF_NOT_VOID_TWO_PARAMETERS_IF_VOID(ret_t))
+/// @brief Append prefix to get the expression of evaluated value.
+/// @param value 2 if the type is void, 1 otherwise.
+#define LIBC_REPLACER_INTERNAL_RETURN_IF_NOT_VOID_APPEND_PREFIX(value)         \
+  LIBC_REPLACER_INTERNAL_CONCATENATE_2(                                        \
+      LIBC_REPLACER_INTERNAL_RETURN_IF_NOT_VOID_EVALUATED_VALUE_, value)
+/// @brief Evaluate to @c return if @c ret_t is not @c void, otherwise empty.
+/// @param ret_t Type argument to be checked.
+#define LIBC_REPLACER_INTERNAL_RETURN_IF_NOT_VOID(ret_t)                       \
+  LIBC_REPLACER_INTERNAL_RETURN_IF_NOT_VOID_APPEND_PREFIX(                     \
+      LIBC_REPLACER_INTERNAL_RETURN_IF_NOT_VOID_EMPTY_COUNT_PARAMETERS(ret_t))
+
 /// @brief Dummy type declaration.
 /// @details Declared because ISO C requires a translation unit to contain at
 /// least one declaration. Once there appears a non-dummy declaration, it can be
