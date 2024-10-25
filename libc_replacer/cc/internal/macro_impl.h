@@ -119,7 +119,7 @@
   foo, bar
 /// @brief Intermediate representation inside
 /// @c LIBC_REPLACER_INTERNAL_RETURN_IF_NOT_VOID_TWO_PARAMETERS_IF_VOID
-/// appearing when @c ret_t is @c void, @c void*, @c void**, etc.
+/// appearing when @c ret_t is either of @c void, @c void*, @c void**, etc.
 /// @param ret_t Type argument to be checked.
 #define LIBC_REPLACER_INTERNAL_RETURN_IF_NOT_VOID_TWO_PARAMETERS_IF_VOID_void(    \
     ret_t)                                                                        \
