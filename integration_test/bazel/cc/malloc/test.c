@@ -23,7 +23,7 @@ int main(void) {
   // Check the value after resetting
   libc_replacer_reset_malloc();
   size_got = size_init;
-  const void *got_after_reset = malloc(value_size);
+  void *got_after_reset = malloc(value_size);
   assert(got_after_reset != NULL);
   assert(size_got == size_init);
 

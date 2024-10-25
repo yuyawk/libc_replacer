@@ -24,7 +24,7 @@ int main(void) {
   // Check the value after resetting
   size_got = size_init;
   libc_replacer_reset_realloc();
-  const void *got_after_reset = realloc(NULL, size);
+  void *got_after_reset = realloc(NULL, size);
   assert(got_after_reset != NULL);
   assert(size_got == size_init);
 

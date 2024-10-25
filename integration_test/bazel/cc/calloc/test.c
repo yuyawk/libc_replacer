@@ -31,7 +31,7 @@ int main(void) {
   libc_replacer_reset_calloc();
   size_t nmemb_got = val_init;
   size_t size_got = val_init;
-  const void *got_after_reset = calloc(nmemb, size);
+  void *got_after_reset = calloc(nmemb, size);
   assert(got_after_reset != NULL);
   assert(nmemb_got == val_init);
   assert(size_got == val_init);
