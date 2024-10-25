@@ -110,26 +110,31 @@
 /// @brief Concatenate two values.
 /// @param p1 First parameter.
 /// @param p2 Second parameter.
-#define LIBC_REPLACER_INTERNAL_CONCATENATE_2(p1, p2) p1##p2
-/// @brief Concatenate three values.
-/// @param p1 First parameter.
-/// @param p2 Second parameter.
-/// @param p3 Third parameter.
-#define LIBC_REPLACER_INTERNAL_CONCATENATE_3(p1, p2, p3) p1##p2##p3
+#define LIBC_REPLACER_INTERNAL_CONCATENATE(p1, p2) p1##p2
 
 /// @brief Value of
 /// @c LIBC_REPLACER_INTERNAL_RETURN_IF_NOT_VOID_TWO_PARAMETERS_IF_VOID when
 /// @c ret_t is @c void.
-#define LIBC_REPLACER_INTERNAL_RETURN_IF_NOT_VOID_TWO_PARAMETERS_IF_VOID_voidvoid \
+#define LIBC_REPLACER_INTERNAL_RETURN_IF_NOT_VOID_TWO_PARAMETERS_IF_VOID_HAS_VOID_void \
   foo, bar
+/// @brief Intermediate representation inside
+/// @c LIBC_REPLACER_INTERNAL_RETURN_IF_NOT_VOID_TWO_PARAMETERS_IF_VOID
+/// appearing when @c ret_t is @c void, @c void*, @c void**, etc.
+/// @param ret_t Type argument to be checked.
+#define LIBC_REPLACER_INTERNAL_RETURN_IF_NOT_VOID_TWO_PARAMETERS_IF_VOID_void(    \
+    ret_t)                                                                        \
+  LIBC_REPLACER_INTERNAL_CONCATENATE(                                             \
+      LIBC_REPLACER_INTERNAL_RETURN_IF_NOT_VOID_TWO_PARAMETERS_IF_VOID_HAS_VOID_, \
+      ret_t)
 /// @brief Evaluate to two parameters if @c ret_t is @c void.
 /// @details Concatenating @c ret_t twice to distinguish @c void and @c void*.
 /// @param ret_t Type argument to be checked
 #define LIBC_REPLACER_INTERNAL_RETURN_IF_NOT_VOID_TWO_PARAMETERS_IF_VOID(      \
     ret_t)                                                                     \
-  LIBC_REPLACER_INTERNAL_CONCATENATE_3(                                        \
+  LIBC_REPLACER_INTERNAL_CONCATENATE(                                          \
       LIBC_REPLACER_INTERNAL_RETURN_IF_NOT_VOID_TWO_PARAMETERS_IF_VOID_,       \
-      ret_t, ret_t)
+      ret_t)                                                                   \
+  (ret_t)
 /// @brief Evaluated value of @c LIBC_REPLACER_INTERNAL_RETURN_IF_NOT_VOID when
 /// the argument is @c void.
 #define LIBC_REPLACER_INTERNAL_RETURN_IF_NOT_VOID_EVALUATED_VALUE_2
@@ -144,7 +149,7 @@
 /// @brief Append prefix to get the expression of evaluated value.
 /// @param value 2 if the type is void, 1 otherwise.
 #define LIBC_REPLACER_INTERNAL_RETURN_IF_NOT_VOID_APPEND_PREFIX(value)         \
-  LIBC_REPLACER_INTERNAL_CONCATENATE_2(                                        \
+  LIBC_REPLACER_INTERNAL_CONCATENATE(                                          \
       LIBC_REPLACER_INTERNAL_RETURN_IF_NOT_VOID_EVALUATED_VALUE_, value)
 /// @brief Evaluate to @c return if @c ret_t is not @c void, otherwise empty.
 /// @param ret_t Type argument to be checked.
