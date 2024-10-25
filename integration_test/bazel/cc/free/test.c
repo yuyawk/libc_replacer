@@ -15,8 +15,8 @@ static void mock_free(void *ptr) {
 int main(void) {
   // Check if the API is replaced
   libc_replacer_overwrite_free(mock_free);
-  // Note: Avoid providing a NULL constant to prevent compiler
-  // from optimizing away free(NULL)
+  // Note: Avoid providing a `NULL` constant to prevent compiler
+  // from optimizing away `free(NULL)`
   void *ptr = NULL;
   free(ptr);
   assert(is_called);
