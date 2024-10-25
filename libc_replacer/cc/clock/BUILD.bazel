@@ -8,4 +8,5 @@ cc_library(
     linkopts = ["-Wl,-wrap=clock"],
     visibility = ["//libc_replacer/cc:__pkg__"],
     deps = ["//libc_replacer/cc/internal"],
+    alwayslink = True,
 )
