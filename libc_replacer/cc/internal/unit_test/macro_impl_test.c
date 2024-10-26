@@ -8,14 +8,14 @@
   do {                                                                         \
     if ((strcmp(#lhs, #rhs) == 0) != (expected_equal)) {                       \
       if (expected_equal) {                                                    \
-        int discarded =                                                        \
-            fprintf_s(stderr, "TEST_ASSERT_TOKEN_EQ failed: '" #lhs            \
-                              " == " #rhs "' is not satisfied.\n");            \
+        int discarded = fputs("TEST_ASSERT_TOKEN_EQ failed: '" #lhs            \
+                              " == " #rhs "' is not satisfied.\n",             \
+                              stderr);                                         \
         (void)discarded;                                                       \
       } else {                                                                 \
-        int discarded =                                                        \
-            fprintf_s(stderr, "TEST_ASSERT_TOKEN_NE failed: '" #lhs            \
-                              " != " #rhs "' is not satisfied.\n");            \
+        int discarded = fputs("TEST_ASSERT_TOKEN_NE failed: '" #lhs            \
+                              " != " #rhs "' is not satisfied.\n",             \
+                              stderr);                                         \
         (void)discarded;                                                       \
       }                                                                        \
       int fail = 0;                                                            \
