@@ -6,15 +6,20 @@
 // Test utility functions
 #define TEST_ASSERT_TOKEN_EQ_IMPL(lhs, rhs, expected_equal)                    \
   do {                                                                         \
-    if ((strcmp(#lhs, #rhs) == 0) != expected_equal) {                         \
+    if ((strcmp(#lhs, #rhs) == 0) != (expected_equal)) {                       \
       if (expected_equal) {                                                    \
-        fprintf(stderr, "TEST_ASSERT_TOKEN_EQ failed: '" #lhs " == " #rhs      \
-                        "' is not satisfied.\n");                              \
+        int discarded =                                                        \
+            fprintf_s(stderr, "TEST_ASSERT_TOKEN_EQ failed: '" #lhs            \
+                              " == " #rhs "' is not satisfied.\n");            \
+        (void)discarded;                                                       \
       } else {                                                                 \
-        fprintf(stderr, "TEST_ASSERT_TOKEN_NE failed: '" #lhs " != " #rhs      \
-                        "' is not satisfied.\n");                              \
+        int discarded =                                                        \
+            fprintf_s(stderr, "TEST_ASSERT_TOKEN_NE failed: '" #lhs            \
+                              " != " #rhs "' is not satisfied.\n");            \
+        (void)discarded;                                                       \
       }                                                                        \
-      assert(0);                                                               \
+      int fail = 0;                                                            \
+      assert(fail);                                                            \
     }                                                                          \
   } while (0)
 #define TEST_ASSERT_TOKEN_EQ(lhs, rhs) TEST_ASSERT_TOKEN_EQ_IMPL(lhs, rhs, 1)
@@ -23,6 +28,7 @@
 // For testing `LIBC_REPLACER_INTERNAL_APPLY`
 #define ADD_FOO(arg) FOO##arg
 
+// NOLINTNEXTLINE(readability-function-cognitive-complexity)
 int main(void) {
   // Test LIBC_REPLACER_INTERNAL_GET_TYPE_FROM_TWO_ELEMENTS
   TEST_ASSERT_TOKEN_EQ(
