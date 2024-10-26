@@ -2,9 +2,6 @@
 
 #include <testing/testing.h>
 
-#include <stdio.h>
-#include <string.h>
-
 // For testing `LIBC_REPLACER_INTERNAL_APPLY`
 #define ADD_FOO(arg) FOO##arg
 
