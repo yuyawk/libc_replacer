@@ -24,11 +24,12 @@ int main(void) {
   const void *got = realloc(ptr, size);
   assert(got == NULL);
   assert(size_got == size);
+  assert(ptr == NULL);
 
   // Check the value after resetting
   size_got = size_init;
   libc_replacer_reset_realloc();
-  void *got_after_reset = realloc(NULL, size);
+  void *got_after_reset = realloc(ptr, size);
   assert(got_after_reset != NULL);
   assert(size_got == size_init);
 

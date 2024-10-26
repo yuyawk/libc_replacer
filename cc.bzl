@@ -2,7 +2,7 @@
 """
 
 load(
-    "//libc_replacer/cc:internal_defs.bzl",
+    "//libc_replacer/cc:defs.bzl",
     _cc_libc_replacer_binary = "cc_libc_replacer_binary",
     _cc_libc_replacer_test = "cc_libc_replacer_test",
 )

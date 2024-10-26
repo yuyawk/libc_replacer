@@ -20,11 +20,12 @@ int main(void) {
   void *ptr = NULL;
   free(ptr);
   assert(is_called);
+  assert(ptr == NULL);
 
   // Check the value after resetting
   libc_replacer_reset_free();
   is_called = false;
-  free(NULL);
+  free(ptr);
   assert(!is_called);
 
   return 0;
