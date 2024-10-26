@@ -11,6 +11,6 @@ cc_test(
     linkstatic = True,
     deps = [
         "//libc_replacer/cc/internal",
+        "@testing",
     ],
-    deps = ["@testing"],
 )
