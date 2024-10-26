@@ -68,8 +68,8 @@ int main(void) {
   // Test LIBC_REPLACER_INTERNAL_GET_ARG_TYPES_AND_NAMES
   // clang-format off
   TESTING_ASSERT_TOKEN_EQ((LIBC_REPLACER_INTERNAL_GET_ARG_TYPES_AND_NAMES(
-                           (int, foo), (void, ), (float, bar))),
-                       (int foo, void , float bar));
+                              (int, foo), (void, ), (float, bar))),
+                          (int foo, void , float bar));
   // clang-format on
 
   // Test LIBC_REPLACER_INTERNAL_CONCATENATE
