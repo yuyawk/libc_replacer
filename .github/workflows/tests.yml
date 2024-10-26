@@ -13,6 +13,28 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  unit-test:
+    strategy:
+      matrix:
+        bazel-version:
+          - 7.x
+        runner:
+          - ubuntu-20.04
+          - ubuntu-22.04
+    runs-on: ${{ matrix.runner }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+      - name: Set up
+        uses: ./.github/actions/setup
+        with:
+          bazel-version: ${{ matrix.bazel-version }}
+      - name: Unit test
+        shell: bash
+        run: ./development/cli/run_unit_test.bash
+
   integration-test:
     strategy:
       matrix:
@@ -69,6 +91,7 @@ jobs:
   all-tests-passable:
     if: always()
     needs:
+      - unit-test
       - integration-test
       - style-check
     runs-on: ubuntu-latest

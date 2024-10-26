@@ -1,0 +1,15 @@
+"""Unit tests for `//libc_replacer/cc/internal`.
+"""
+
+cc_test(
+    name = "unit_test",
+    timeout = "short",
+    srcs = [
+        "macro_impl_test.c",
+    ],
+    features = ["fully_static_link"],
+    linkstatic = True,
+    deps = [
+        "//libc_replacer/cc/internal",
+    ],
+)

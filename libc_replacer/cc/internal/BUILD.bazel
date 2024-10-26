@@ -8,5 +8,8 @@ cc_library(
         "definition_helper.h",
         "macro_impl.h",
     ],
-    visibility = ["//libc_replacer/cc:__subpackages__"],
+    visibility = [
+        "//libc_replacer/cc:__subpackages__",
+        "//libc_replacer/cc/internal/unit_test:__pkg__",
+    ],
 )

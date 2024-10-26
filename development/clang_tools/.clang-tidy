@@ -14,3 +14,6 @@ Checks: "
     -cert-dcl51-cpp,
 "
 WarningsAsErrors: "*"
+CheckOptions:
+    - key: readability-function-cognitive-complexity.IgnoreMacros
+      value: true
