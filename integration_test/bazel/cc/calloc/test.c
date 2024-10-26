@@ -24,7 +24,7 @@ int main(void) {
   libc_replacer_overwrite_calloc(mock_calloc);
   const size_t nmemb = 1;
   const size_t size = 1;
-  const void *got = calloc(nmemb, size);
+  const void *const got = calloc(nmemb, size);
   TESTING_ASSERT_EQ(got, NULL);
   TESTING_ASSERT_EQ(nmemb_got, nmemb);
   TESTING_ASSERT_EQ(size_got, size);
@@ -33,7 +33,7 @@ int main(void) {
   libc_replacer_reset_calloc();
   nmemb_got = val_init;
   size_got = val_init;
-  void *got_after_reset = calloc(nmemb, size);
+  void *const got_after_reset = calloc(nmemb, size);
   TESTING_ASSERT_NE(got_after_reset, NULL);
   TESTING_ASSERT_EQ(nmemb_got, val_init);
   TESTING_ASSERT_EQ(size_got, val_init);

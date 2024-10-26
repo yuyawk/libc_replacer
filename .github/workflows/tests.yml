@@ -16,6 +16,10 @@ jobs:
   unit-test:
     strategy:
       matrix:
+        compilation-mode:
+          - fastbuild
+          - opt
+          - dbg
         bazel-version:
           - 7.x
         runner:
@@ -33,11 +37,17 @@ jobs:
           bazel-version: ${{ matrix.bazel-version }}
       - name: Unit test
         shell: bash
-        run: ./development/cli/run_unit_test.bash
+        run: ./development/cli/run_unit_test.bash -c "${COMPILATION_MODE}"
+        env:
+          COMPILATION_MODE: ${{ matrix.compilation-mode }}
 
   integration-test:
     strategy:
       matrix:
+        compilation-mode:
+          - fastbuild
+          - opt
+          - dbg
         bazel-version:
           - 7.x
         runner:
@@ -55,7 +65,9 @@ jobs:
           bazel-version: ${{ matrix.bazel-version }}
       - name: Integration test
         shell: bash
-        run: ./development/cli/run_integration_test.bash
+        run: ./development/cli/run_integration_test.bash -c "${COMPILATION_MODE}"
+        env:
+          COMPILATION_MODE: ${{ matrix.compilation-mode }}
 
   style-check:
     runs-on: ubuntu-latest
