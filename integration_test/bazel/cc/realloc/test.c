@@ -19,15 +19,15 @@ int main(void) {
   const size_t size = 6;
   // Note: Avoid providing a `NULL` constant to prevent the compiler
   // from optimizing `realloc(NULL, size)` to `malloc(size)`
-  void *volatile null_ptr = NULL;
-  const void *got = realloc(null_ptr, size);
+  void *const volatile null_ptr = NULL;
+  const void *const got = realloc(null_ptr, size);
   TESTING_ASSERT_EQ(got, NULL);
   TESTING_ASSERT_EQ(size_got, size);
 
   // Check the value after resetting
   size_got = size_init;
   libc_replacer_reset_realloc();
-  void *got_after_reset = realloc(null_ptr, size);
+  void *const got_after_reset = realloc(null_ptr, size);
   TESTING_ASSERT_NE(got_after_reset, NULL);
   TESTING_ASSERT_EQ(size_got, size_init);
 

@@ -17,7 +17,7 @@ int main(void) {
   libc_replacer_overwrite_free(mock_free);
   // Note: Avoid providing a `NULL` constant to prevent the compiler
   // from optimizing away `free(NULL)`
-  void *volatile null_ptr = NULL;
+  void *const volatile null_ptr = NULL;
   free(null_ptr);
   TESTING_ASSERT_TRUE(is_called);
 
