@@ -19,15 +19,15 @@ int main(void) {
   // Check if the API is replaced
   libc_replacer_overwrite_time(mock_time);
   const time_t got = time(NULL);
-  TEST_ASSERT_EQ(got, mock_time_value);
-  TEST_ASSERT_TRUE(is_called);
+  TESTING_ASSERT_EQ(got, mock_time_value);
+  TESTING_ASSERT_TRUE(is_called);
 
   // Check the value after resetting
   libc_replacer_reset_time();
   is_called = false;
   const time_t got_after_reset = time(NULL);
-  TEST_ASSERT_NE(got_after_reset, mock_time_value);
-  TEST_ASSERT_FALSE(is_called);
+  TESTING_ASSERT_NE(got_after_reset, mock_time_value);
+  TESTING_ASSERT_FALSE(is_called);
 
   return 0;
 }

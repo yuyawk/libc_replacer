@@ -19,14 +19,14 @@ int main(void) {
   // from optimizing away `free(NULL)`
   void *ptr = NULL;
   free(ptr);
-  TEST_ASSERT_TRUE(is_called);
-  TEST_ASSERT_EQ(ptr, NULL);
+  TESTING_ASSERT_TRUE(is_called);
+  TESTING_ASSERT_EQ(ptr, NULL);
 
   // Check the value after resetting
   libc_replacer_reset_free();
   is_called = false;
   free(ptr);
-  TEST_ASSERT_FALSE(is_called);
+  TESTING_ASSERT_FALSE(is_called);
 
   return 0;
 }

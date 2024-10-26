@@ -17,15 +17,15 @@ int main(void) {
   // Check if the API is replaced
   libc_replacer_overwrite_clock(mock_clock);
   const clock_t got = clock();
-  TEST_ASSERT_EQ(got, mock_clock_value);
-  TEST_ASSERT_TRUE(is_called);
+  TESTING_ASSERT_EQ(got, mock_clock_value);
+  TESTING_ASSERT_TRUE(is_called);
 
   // Check the value after resetting
   libc_replacer_reset_clock();
   is_called = false;
   const clock_t got_after_reset = clock();
-  TEST_ASSERT_NE(got_after_reset, mock_clock_value);
-  TEST_ASSERT_FALSE(is_called);
+  TESTING_ASSERT_NE(got_after_reset, mock_clock_value);
+  TESTING_ASSERT_FALSE(is_called);
 
   return 0;
 }
