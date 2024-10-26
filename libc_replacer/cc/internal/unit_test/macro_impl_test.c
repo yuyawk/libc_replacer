@@ -28,7 +28,6 @@
 // For testing `LIBC_REPLACER_INTERNAL_APPLY`
 #define ADD_FOO(arg) FOO##arg
 
-// NOLINTNEXTLINE(readability-function-cognitive-complexity)
 int main(void) {
   // Test LIBC_REPLACER_INTERNAL_GET_TYPE_FROM_TWO_ELEMENTS
   TEST_ASSERT_TOKEN_EQ(
