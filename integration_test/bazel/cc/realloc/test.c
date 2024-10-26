@@ -23,6 +23,7 @@ int main(void) {
   const void *const got = realloc(null_ptr, size);
   TESTING_ASSERT_EQ(got, NULL);
   TESTING_ASSERT_EQ(size_got, size);
+  TESTING_ASSERT_EQ(null_ptr, NULL);
 
   // Check the value after resetting
   size_got = size_init;

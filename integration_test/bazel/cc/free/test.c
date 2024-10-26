@@ -20,6 +20,7 @@ int main(void) {
   void *const volatile null_ptr = NULL;
   free(null_ptr);
   TESTING_ASSERT_TRUE(is_called);
+  TESTING_ASSERT_EQ(null_ptr, NULL);
 
   // Check the value after resetting
   libc_replacer_reset_free();
