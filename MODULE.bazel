@@ -36,3 +36,10 @@ local_path_override(
     module_name = "clang_tools",
     path = "development/clang_tools",
 )
+
+# `testing` for Testing utilities.
+bazel_dep(name = "testing", version = "", dev_dependency = True)
+local_path_override(
+    module_name = "testing",
+    path = "development/testing",
+)

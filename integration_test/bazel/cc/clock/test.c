@@ -1,6 +1,6 @@
 #include <libc_replacer/cc/interface.h>
+#include <testing/testing.h>
 
-#include <assert.h>
 #include <stdbool.h>
 #include <time.h>
 
@@ -17,15 +17,15 @@ int main(void) {
   // Check if the API is replaced
   libc_replacer_overwrite_clock(mock_clock);
   const clock_t got = clock();
-  assert(got == mock_clock_value);
-  assert(is_called);
+  TESTING_ASSERT_EQ(got, mock_clock_value);
+  TESTING_ASSERT_TRUE(is_called);
 
   // Check the value after resetting
   libc_replacer_reset_clock();
   is_called = false;
   const clock_t got_after_reset = clock();
-  assert(got_after_reset != mock_clock_value);
-  assert(!is_called);
+  TESTING_ASSERT_NE(got_after_reset, mock_clock_value);
+  TESTING_ASSERT_FALSE(is_called);
 
   return 0;
 }

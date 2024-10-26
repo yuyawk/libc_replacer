@@ -1,0 +1,9 @@
+"""Define testing utilities."""
+
+cc_library(
+    name = "testing",
+    testonly = True,
+    hdrs = ["testing.h"],
+    include_prefix = "testing",
+    visibility = ["//visibility:public"],
+)

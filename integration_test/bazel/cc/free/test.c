@@ -1,6 +1,6 @@
 #include <libc_replacer/cc/interface.h>
+#include <testing/testing.h>
 
-#include <assert.h>
 #include <stdbool.h>
 #include <stdlib.h>
 
@@ -19,14 +19,14 @@ int main(void) {
   // from optimizing away `free(NULL)`
   void *ptr = NULL;
   free(ptr);
-  assert(is_called);
-  assert(ptr == NULL);
+  TESTING_ASSERT_TRUE(is_called);
+  TESTING_ASSERT_EQ(ptr, NULL);
 
   // Check the value after resetting
   libc_replacer_reset_free();
   is_called = false;
   free(ptr);
-  assert(!is_called);
+  TESTING_ASSERT_FALSE(is_called);
 
   return 0;
 }

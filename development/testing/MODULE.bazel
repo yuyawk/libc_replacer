@@ -1,0 +1,7 @@
+"""Module for internal testing.
+"""
+
+module(
+    name = "testing",
+    version = "0.0.0",
+)
