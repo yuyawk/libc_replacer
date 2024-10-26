@@ -1,4 +1,5 @@
 #include "libc_replacer/cc/internal/macro_impl.h"
+
 #include <testing/testing.h>
 
 #include <stdio.h>
@@ -38,16 +39,18 @@ int main(void) {
   TESTING_ASSERT_TOKEN_EQ(LIBC_REPLACER_INTERNAL_COUNT(one), 1);
   TESTING_ASSERT_TOKEN_EQ(LIBC_REPLACER_INTERNAL_COUNT(one, two), 2);
   TESTING_ASSERT_TOKEN_EQ(LIBC_REPLACER_INTERNAL_COUNT(one, two, three), 3);
-  TESTING_ASSERT_TOKEN_EQ(LIBC_REPLACER_INTERNAL_COUNT(one, two, three, four), 4);
+  TESTING_ASSERT_TOKEN_EQ(LIBC_REPLACER_INTERNAL_COUNT(one, two, three, four),
+                          4);
   TESTING_ASSERT_TOKEN_EQ(
       LIBC_REPLACER_INTERNAL_COUNT(one, two, three, four, five), 5);
 
   // Test LIBC_REPLACER_INTERNAL_APPLY
   TESTING_ASSERT_TOKEN_EQ(LIBC_REPLACER_INTERNAL_APPLY(ADD_FOO, one), FOOone);
   TESTING_ASSERT_TOKEN_EQ((LIBC_REPLACER_INTERNAL_APPLY(ADD_FOO, one, two)),
-                       (FOOone, FOOtwo));
-  TESTING_ASSERT_TOKEN_EQ((LIBC_REPLACER_INTERNAL_APPLY(ADD_FOO, one, two, three)),
-                       (FOOone, FOOtwo, FOOthree));
+                          (FOOone, FOOtwo));
+  TESTING_ASSERT_TOKEN_EQ(
+      (LIBC_REPLACER_INTERNAL_APPLY(ADD_FOO, one, two, three)),
+      (FOOone, FOOtwo, FOOthree));
   TESTING_ASSERT_TOKEN_EQ(
       (LIBC_REPLACER_INTERNAL_APPLY(ADD_FOO, one, two, three, four)),
       (FOOone, FOOtwo, FOOthree, FOOfour));
@@ -57,13 +60,13 @@ int main(void) {
 
   // Test LIBC_REPLACER_INTERNAL_GET_ARG_TYPES
   TESTING_ASSERT_TOKEN_EQ((LIBC_REPLACER_INTERNAL_GET_ARG_TYPES(
-                           (int, foo), (void, ), (float, bar))),
-                       (int, void, float));
+                              (int, foo), (void, ), (float, bar))),
+                          (int, void, float));
 
   // Test LIBC_REPLACER_INTERNAL_GET_ARG_NAMES
   TESTING_ASSERT_TOKEN_EQ((LIBC_REPLACER_INTERNAL_GET_ARG_NAMES(
-                           (int, foo), (void, ), (float, bar))),
-                       (foo, , bar));
+                              (int, foo), (void, ), (float, bar))),
+                          (foo, , bar));
 
   // Test LIBC_REPLACER_INTERNAL_GET_ARG_TYPES_AND_NAMES
   // clang-format off
@@ -76,26 +79,27 @@ int main(void) {
   TESTING_ASSERT_TOKEN_EQ(LIBC_REPLACER_INTERNAL_CONCATENATE(foo, bar), foobar);
 
   // Test LIBC_REPLACER_INTERNAL_RETURN_IF_NOT_VOID
-  TESTING_ASSERT_TOKEN_EQ(LIBC_REPLACER_INTERNAL_RETURN_IF_NOT_VOID(int), return);
+  TESTING_ASSERT_TOKEN_EQ(LIBC_REPLACER_INTERNAL_RETURN_IF_NOT_VOID(int),
+                          return);
   TESTING_ASSERT_TOKEN_EQ(LIBC_REPLACER_INTERNAL_RETURN_IF_NOT_VOID(float),
-                       return);
+                          return);
   TESTING_ASSERT_TOKEN_EQ(LIBC_REPLACER_INTERNAL_RETURN_IF_NOT_VOID(double),
-                       return);
+                          return);
   TESTING_ASSERT_TOKEN_EQ(LIBC_REPLACER_INTERNAL_RETURN_IF_NOT_VOID(time_t),
-                       return);
+                          return);
   TESTING_ASSERT_TOKEN_EQ(LIBC_REPLACER_INTERNAL_RETURN_IF_NOT_VOID(void), );
   TESTING_ASSERT_TOKEN_EQ(LIBC_REPLACER_INTERNAL_RETURN_IF_NOT_VOID(void_t),
-                       return);
+                          return);
   TESTING_ASSERT_TOKEN_EQ(LIBC_REPLACER_INTERNAL_RETURN_IF_NOT_VOID(void *),
-                       return);
+                          return);
   TESTING_ASSERT_TOKEN_EQ(LIBC_REPLACER_INTERNAL_RETURN_IF_NOT_VOID(void **),
-                       return);
+                          return);
   TESTING_ASSERT_TOKEN_EQ(LIBC_REPLACER_INTERNAL_RETURN_IF_NOT_VOID(void ***),
-                       return);
+                          return);
   TESTING_ASSERT_TOKEN_EQ(LIBC_REPLACER_INTERNAL_RETURN_IF_NOT_VOID(void ****),
-                       return);
+                          return);
   TESTING_ASSERT_TOKEN_EQ(LIBC_REPLACER_INTERNAL_RETURN_IF_NOT_VOID(void *****),
-                       return);
+                          return);
 
   return 0;
 }
