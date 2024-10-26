@@ -16,18 +16,19 @@
   ret_t __wrap_##library(                                                                                                       \
       LIBC_REPLACER_INTERNAL_GET_ARG_TYPES_AND_NAMES(__VA_ARGS__));                                                             \
   static _Atomic(libc_replacer_##library##_func_ptr_t) /* NOLINTNEXTLINE(cppcoreguidelines-avoid-non-const-global-variables) */ \
-      libc_replacer_func_global = __real_##library;                                                                             \
+      libc_replacer_##library##_global_func_ptr = __real_##library;                                                             \
   void libc_replacer_overwrite_##library(                                                                                       \
       libc_replacer_##library##_func_ptr_t func_new) {                                                                          \
-    atomic_store(&libc_replacer_func_global, func_new);                                                                         \
+    atomic_store(&libc_replacer_##library##_global_func_ptr, func_new);                                                         \
   }                                                                                                                             \
   void libc_replacer_reset_##library(void) {                                                                                    \
-    atomic_store(&libc_replacer_func_global, __real_##library);                                                                 \
+    atomic_store(&libc_replacer_##library##_global_func_ptr,                                                                    \
+                 __real_##library);                                                                                             \
   }                                                                                                                             \
   ret_t __wrap_##library(                                                                                                       \
       LIBC_REPLACER_INTERNAL_GET_ARG_TYPES_AND_NAMES(__VA_ARGS__)) {                                                            \
     libc_replacer_##library##_func_ptr_t func_got =                                                                             \
-        atomic_load(&libc_replacer_func_global);                                                                                \
+        atomic_load(&libc_replacer_##library##_global_func_ptr);                                                                \
     LIBC_REPLACER_INTERNAL_RETURN_IF_NOT_VOID(ret_t)                                                                            \
     func_got(LIBC_REPLACER_INTERNAL_GET_ARG_NAMES(__VA_ARGS__));                                                                \
   }
