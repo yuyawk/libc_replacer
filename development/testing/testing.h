@@ -13,7 +13,7 @@
       int discarded = /* NOLINTNEXTLINE(clang-analyzer-security.insecureAPI.DeprecatedOrUnsafeBufferHandling) */ \
           fprintf(                                                                                               \
               stderr,                                                                                            \
-              "(TESTING_ASSERT_TRUE) Assertion failed: %s is false, function "                                   \
+              "(TESTING_ASSERT_TRUE) Assertion failed: %s is false; function "                                   \
               "%s, file %s, line %d.\n",                                                                         \
               #expr, __func__, __FILE__, __LINE__);                                                              \
       (void)discarded;                                                                                           \
@@ -29,7 +29,7 @@
       int discarded = /* NOLINTNEXTLINE(clang-analyzer-security.insecureAPI.DeprecatedOrUnsafeBufferHandling) */ \
           fprintf(                                                                                               \
               stderr,                                                                                            \
-              "(TESTING_ASSERT_FALSE) Assertion failed: %s is true, function "                                   \
+              "(TESTING_ASSERT_FALSE) Assertion failed: %s is true; function "                                   \
               "%s, file %s, line %d.\n",                                                                         \
               #expr, __func__, __FILE__, __LINE__);                                                              \
       (void)discarded;                                                                                           \
@@ -45,11 +45,11 @@
   do {                                                                                                           \
     if ((lhs) != (rhs)) {                                                                                        \
       int discarded = /* NOLINTNEXTLINE(clang-analyzer-security.insecureAPI.DeprecatedOrUnsafeBufferHandling) */ \
-          fprintf(                                                                                               \
-              stderr,                                                                                            \
-              "(TESTING_ASSERT_EQ) Assertion failed: %s == %s, function %s, "                                    \
-              "file %s, line %d.\n",                                                                             \
-              #lhs, #rhs, __func__, __FILE__, __LINE__);                                                         \
+          fprintf(stderr,                                                                                        \
+                  "(TESTING_ASSERT_EQ) Assertion failed: '%s == %s' is not "                                     \
+                  "satisfied.; function %s, "                                                                    \
+                  "file %s, line %d.\n",                                                                         \
+                  #lhs, #rhs, __func__, __FILE__, __LINE__);                                                     \
       (void)discarded;                                                                                           \
       abort();                                                                                                   \
     }                                                                                                            \
@@ -62,11 +62,11 @@
   do {                                                                                                           \
     if ((lhs) == (rhs)) {                                                                                        \
       int discarded = /* NOLINTNEXTLINE(clang-analyzer-security.insecureAPI.DeprecatedOrUnsafeBufferHandling) */ \
-          fprintf(                                                                                               \
-              stderr,                                                                                            \
-              "(TESTING_ASSERT_NE) Assertion failed: %s != %s, function %s, "                                    \
-              "file %s, line %d.\n",                                                                             \
-              #lhs, #rhs, __func__, __FILE__, __LINE__);                                                         \
+          fprintf(stderr,                                                                                        \
+                  "(TESTING_ASSERT_NE) Assertion failed: '%s != %s' is not "                                     \
+                  "satisfied; function %s, "                                                                     \
+                  "file %s, line %d.\n",                                                                         \
+                  #lhs, #rhs, __func__, __FILE__, __LINE__);                                                     \
       (void)discarded;                                                                                           \
       abort();                                                                                                   \
     }                                                                                                            \
@@ -83,15 +83,15 @@
       if (expected_equal) {                                                                                        \
         int discarded = /* NOLINTNEXTLINE(clang-analyzer-security.insecureAPI.DeprecatedOrUnsafeBufferHandling) */ \
             fprintf(stderr,                                                                                        \
-                    "(TESTING_ASSERT_TOKEN_EQ) Assertion failed: %s "                                              \
-                    "== %s, function %s, file %s, line %d.\n",                                                     \
+                    "(TESTING_ASSERT_TOKEN_EQ) Assertion failed: '%s == %s' "                                      \
+                    "is not satisfied; function %s, file %s, line %d.\n",                                          \
                     #lhs, #rhs, __func__, __FILE__, __LINE__);                                                     \
         (void)discarded;                                                                                           \
       } else {                                                                                                     \
         int discarded = /* NOLINTNEXTLINE(clang-analyzer-security.insecureAPI.DeprecatedOrUnsafeBufferHandling) */ \
             fprintf(stderr,                                                                                        \
-                    "(TESTING_ASSERT_TOKEN_NE) Assertion failed: %s "                                              \
-                    "!= %s, function %s, file %s, line %d.\n",                                                     \
+                    "(TESTING_ASSERT_TOKEN_NE) Assertion failed: '%s != %s' "                                      \
+                    "is not satisfied; function %s, file %s, line %d.\n",                                          \
                     #lhs, #rhs, __func__, __FILE__, __LINE__);                                                     \
         (void)discarded;                                                                                           \
       }                                                                                                            \
