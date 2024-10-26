@@ -1,6 +1,6 @@
 #include <libc_replacer/cc/interface.h>
+#include <testing/testing.h>
 
-#include <assert.h>
 #include <stdbool.h>
 #include <time.h>
 
@@ -22,10 +22,10 @@ int main(void) {
   struct timespec ts_value = {0};
   const int base = 1234;
   const int got = timespec_get(&ts_value, base);
-  assert(got == base);
-  assert(ts_value.tv_sec == mock_tv_sec_value);
-  assert(ts_value.tv_nsec == mock_tv_nsec_value);
-  assert(is_called);
+  TEST_ASSERT_EQ(got, base);
+  TEST_ASSERT_EQ(ts_value.tv_sec, mock_tv_sec_value);
+  TEST_ASSERT_EQ(ts_value.tv_nsec, mock_tv_nsec_value);
+  TEST_ASSERT_TRUE(is_called);
 
   // Check the values after resetting
   libc_replacer_reset_timespec_get();
@@ -33,12 +33,12 @@ int main(void) {
   ts_value.tv_sec = 0;
   ts_value.tv_nsec = 0;
   const int new_base = 12;
-  assert(base != new_base); // invariant
+  TEST_ASSERT_NE(base, new_base); // invariant
   const int got_after_reset = timespec_get(&ts_value, new_base);
-  assert(got_after_reset != base);
-  assert(ts_value.tv_sec != mock_tv_sec_value);
-  assert(ts_value.tv_nsec != mock_tv_nsec_value);
-  assert(!is_called);
+  TEST_ASSERT_NE(got_after_reset, base);
+  TEST_ASSERT_NE(ts_value.tv_sec, mock_tv_sec_value);
+  TEST_ASSERT_NE(ts_value.tv_nsec, mock_tv_nsec_value);
+  TEST_ASSERT_FALSE(is_called);
 
   return 0;
 }

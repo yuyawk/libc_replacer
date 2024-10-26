@@ -8,12 +8,14 @@ cc_libc_replacer_binary(
     name = "test_binary",
     testonly = True,
     srcs = ["test.c"],
+    deps = ["@testing"],
 )
 
 cc_libc_replacer_test(
     name = "test",
     timeout = "short",
     srcs = ["test.c"],
+    deps = ["@testing"],
 )
 
 sh_test(

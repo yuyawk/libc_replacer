@@ -1,6 +1,6 @@
 #include <libc_replacer/cc/interface.h>
+#include <testing/testing.h>
 
-#include <assert.h>
 #include <stdlib.h>
 
 static const size_t val_init = 0;
@@ -11,8 +11,8 @@ static size_t size_got = val_init;
 
 // NOLINTNEXTLINE(bugprone-easily-swappable-parameters)
 static void *mock_calloc(size_t nmemb, size_t size) {
-  assert(nmemb != val_init); // precondition
-  assert(size != val_init);  // precondition
+  TEST_ASSERT_NE(nmemb, val_init); // precondition
+  TEST_ASSERT_NE(size, val_init);  // precondition
 
   nmemb_got = nmemb;
   size_got = size;
@@ -25,18 +25,18 @@ int main(void) {
   const size_t nmemb = 1;
   const size_t size = 1;
   const void *got = calloc(nmemb, size);
-  assert(got == NULL);
-  assert(nmemb_got == nmemb);
-  assert(size_got == size);
+  TEST_ASSERT_EQ(got, NULL);
+  TEST_ASSERT_EQ(nmemb_got, nmemb);
+  TEST_ASSERT_EQ(size_got, size);
 
   // Check the value after resetting
   libc_replacer_reset_calloc();
   nmemb_got = val_init;
   size_got = val_init;
   void *got_after_reset = calloc(nmemb, size);
-  assert(got_after_reset != NULL);
-  assert(nmemb_got == val_init);
-  assert(size_got == val_init);
+  TEST_ASSERT_NE(got_after_reset, NULL);
+  TEST_ASSERT_EQ(nmemb_got, val_init);
+  TEST_ASSERT_EQ(size_got, val_init);
 
   free(got_after_reset);
 

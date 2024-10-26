@@ -1,29 +1,8 @@
 #include "libc_replacer/cc/internal/macro_impl.h"
-#include <assert.h>
+#include <testing/testing.h>
+
 #include <stdio.h>
 #include <string.h>
-
-// Test utility functions
-#define TEST_ASSERT_TOKEN_EQ_IMPL(lhs, rhs, expected_equal)                    \
-  do {                                                                         \
-    if ((strcmp(#lhs, #rhs) == 0) != (expected_equal)) {                       \
-      if (expected_equal) {                                                    \
-        int discarded = fputs("TEST_ASSERT_TOKEN_EQ failed: '" #lhs            \
-                              " == " #rhs "' is not satisfied.\n",             \
-                              stderr);                                         \
-        (void)discarded;                                                       \
-      } else {                                                                 \
-        int discarded = fputs("TEST_ASSERT_TOKEN_NE failed: '" #lhs            \
-                              " != " #rhs "' is not satisfied.\n",             \
-                              stderr);                                         \
-        (void)discarded;                                                       \
-      }                                                                        \
-      int fail = 0;                                                            \
-      assert(fail);                                                            \
-    }                                                                          \
-  } while (0)
-#define TEST_ASSERT_TOKEN_EQ(lhs, rhs) TEST_ASSERT_TOKEN_EQ_IMPL(lhs, rhs, 1)
-#define TEST_ASSERT_TOKEN_NE(lhs, rhs) TEST_ASSERT_TOKEN_EQ_IMPL(lhs, rhs, 0)
 
 // For testing `LIBC_REPLACER_INTERNAL_APPLY`
 #define ADD_FOO(arg) FOO##arg

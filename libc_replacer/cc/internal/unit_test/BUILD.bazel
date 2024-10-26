@@ -12,4 +12,5 @@ cc_test(
     deps = [
         "//libc_replacer/cc/internal",
     ],
+    deps = ["@testing"],
 )
