@@ -1,1 +1,3 @@
-../../.bazelignore
+.cache
+development
+integration_test
