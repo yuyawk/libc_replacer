@@ -1,8 +1,8 @@
 #ifndef INCLUDE_GUARD_LIBC_REPLACER_CC_INTERNAL_DEFINITION_HELPER_UNSUPPORTED_H_
 #define INCLUDE_GUARD_LIBC_REPLACER_CC_INTERNAL_DEFINITION_HELPER_UNSUPPORTED_H_
 
-#include <stdio.h>
-#include <stdlib.h>
+#include <stdio.h>  // IWYU pragma: keep
+#include <stdlib.h> // IWYU pragma: keep
 
 #if defined(__STDC_VERSION__) && 202311L <= __STDC_VERSION__
 #define LIBC_REPLACER_INTERNAL_NORETURN [[noreturn]]
