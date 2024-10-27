@@ -8,8 +8,11 @@
 #ifdef _POSIX_VERSION // Check if the platform is POSIX-compliant
 
 #define LIBC_REPLACER_INTERNAL_HAS_CLOCK_GETTIME
-#include <sys/types.h>       // IWYU pragma: export
-typedef clockid_t clockid_t; // IWYU pragma: export
+
+// IWYU pragma: begin_exports
+#include <sys/types.h>
+typedef clockid_t clockid_t;
+// IWYU pragma: end_exports
 
 #endif // _POSIX_VERSION
 #endif // defined(__unix__) || (defined(__APPLE__) && defined(__MACH__))
