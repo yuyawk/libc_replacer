@@ -1,7 +1,6 @@
 #ifndef INCLUDE_GUARD_LIBC_REPLACER_CC_INTERNAL_DEFINITION_HELPER_UNSUPPORTED_H_
 #define INCLUDE_GUARD_LIBC_REPLACER_CC_INTERNAL_DEFINITION_HELPER_UNSUPPORTED_H_
 
-#include "libc_replacer/cc/internal/macro_impl.h"
 #include <stdio.h>
 #include <stdlib.h>
 
