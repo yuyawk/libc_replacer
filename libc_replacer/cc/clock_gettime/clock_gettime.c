@@ -1,7 +1,7 @@
 #include "libc_replacer/cc/clock_gettime/clock_gettime.h" // IWYU pragma: associated
 #include "libc_replacer/cc/clock_gettime/features.h"
 #include "libc_replacer/cc/internal/definition_helper_syscall.h"
-#include "libc_replacer/cc/internal/definition_helper_unsupported.h"
+#include "libc_replacer/cc/internal/definition_helper_unsupported.h" // IWYU pragma: keep
 #include <time.h>
 
 #ifdef LIBC_REPLACER_INTERNAL_HAS_CLOCK_GETTIME
