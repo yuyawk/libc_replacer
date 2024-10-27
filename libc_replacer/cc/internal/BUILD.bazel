@@ -6,6 +6,8 @@ cc_library(
     hdrs = [
         "declaration_helper.h",
         "definition_helper.h",
+        "definition_helper_syscall.h",
+        "definition_helper_unsupported.h",
         "macro_impl.h",
     ],
     visibility = [

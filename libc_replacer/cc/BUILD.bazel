@@ -11,6 +11,7 @@ cc_library(
     deps = [
         "//libc_replacer/cc/calloc",
         "//libc_replacer/cc/clock",
+        "//libc_replacer/cc/clock_gettime",
         "//libc_replacer/cc/free",
         "//libc_replacer/cc/malloc",
         "//libc_replacer/cc/realloc",

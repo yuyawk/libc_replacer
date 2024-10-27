@@ -1,0 +1,20 @@
+"""C/C++ implementations to replace `clock_gettime`.
+"""
+
+cc_library(
+    name = "clock_gettime",
+    srcs = [
+        "clock_gettime.c",
+    ],
+    hdrs = [
+        "clock_gettime.h",
+        "features.h",
+    ],
+    linkopts = [
+        "-Wl,-wrap=clock_gettime",
+        "-Wl,-wrap=__clock_gettime",
+    ],
+    visibility = ["//libc_replacer/cc:__pkg__"],
+    deps = ["//libc_replacer/cc/internal"],
+    alwayslink = True,
+)

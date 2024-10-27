@@ -4,6 +4,7 @@
 // IWYU pragma: begin_exports
 #include "libc_replacer/cc/calloc/calloc.h"
 #include "libc_replacer/cc/clock/clock.h"
+#include "libc_replacer/cc/clock_gettime/clock_gettime.h"
 #include "libc_replacer/cc/free/free.h"
 #include "libc_replacer/cc/malloc/malloc.h"
 #include "libc_replacer/cc/realloc/realloc.h"
