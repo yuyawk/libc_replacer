@@ -1,32 +1,11 @@
 """Define C/C++ re-exporting targets.
 """
 
-load(":defs.bzl", "cc_reexport_library")
+load(":defs.bzl", "SUPPORTED_LIBRARIES", "cc_reexport_library")
 
-cc_reexport_library(
-    name = "calloc",
-)
-
-cc_reexport_library(
-    name = "clock",
-)
-
-cc_reexport_library(
-    name = "free",
-)
-
-cc_reexport_library(
-    name = "malloc",
-)
-
-cc_reexport_library(
-    name = "realloc",
-)
-
-cc_reexport_library(
-    name = "time",
-)
-
-cc_reexport_library(
-    name = "timespec_get",
-)
+[
+    cc_reexport_library(
+        name = library,
+    )
+    for library in SUPPORTED_LIBRARIES
+]

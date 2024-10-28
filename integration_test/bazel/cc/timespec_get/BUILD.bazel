@@ -8,6 +8,7 @@ cc_libc_replacer_binary(
     name = "test_binary",
     testonly = True,
     srcs = ["test.c"],
+    libs_to_replace = ["timespec_get"],
     deps = ["@testing"],
 )
 
@@ -15,6 +16,7 @@ cc_libc_replacer_test(
     name = "test",
     timeout = "short",
     srcs = ["test.c"],
+    libs_to_replace = ["timespec_get"],
     deps = ["@testing"],
 )
 
