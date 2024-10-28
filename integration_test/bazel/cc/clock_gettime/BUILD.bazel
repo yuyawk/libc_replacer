@@ -1,0 +1,29 @@
+load(
+    "@libc_replacer//:cc.bzl",
+    "cc_libc_replacer_binary",
+    "cc_libc_replacer_test",
+)
+
+cc_libc_replacer_binary(
+    name = "test_binary",
+    testonly = True,
+    srcs = ["test.c"],
+    copts = ["-lrt"],
+    defines = ["_POSIX_C_SOURCE=199309L"],
+    deps = ["@testing"],
+)
+
+cc_libc_replacer_test(
+    name = "test",
+    timeout = "short",
+    srcs = ["test.c"],
+    copts = ["-lrt"],
+    defines = ["_POSIX_C_SOURCE=199309L"],
+    deps = ["@testing"],
+)
+
+sh_test(
+    name = "binary_test",
+    timeout = "short",
+    srcs = [":test_binary"],
+)
