@@ -1,4 +1,4 @@
-#include <libc_replacer/cc/interface.h>
+#include <libc_replacer/cc/free.h>
 #include <testing/testing.h>
 
 #include <stdbool.h>
