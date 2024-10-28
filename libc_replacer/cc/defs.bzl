@@ -1,7 +1,7 @@
 """Define Bazel implementations to wrap libc for C/C++ applications.
 """
 
-# Internal only, may be re-exported at the root package.
+# Internal only, some of them may be re-exported at the root package.
 visibility("//...")
 
 def _get_modified_kwargs(kwargs_dict):
@@ -42,3 +42,23 @@ def cc_libc_replacer_test(**kwargs):
 
     kwargs = _get_modified_kwargs(kwargs)
     native.cc_test(**kwargs)
+
+def cc_reexport_library(name):
+    """Wrapper of `cc_library` to re-export each sub-library.
+
+    Only for internal use.
+
+    Args:
+        name(str): Name of the sub-library.
+    """
+    native.cc_library(
+        name = name,
+        hdrs = [name + ".h"],
+        # Explicitly set `include_prefix`
+        # in order to use `-I` and have the user include the header with `<>`
+        include_prefix = "libc_replacer/cc",
+        deps = [
+            "//libc_replacer/cc/{}".format(name),
+        ],
+        visibility = ["//:__pkg__"],
+    )

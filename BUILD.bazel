@@ -1,0 +1,41 @@
+"""Top-level BUILD.bazel file to re-export user-facing targets."""
+
+package(
+    # Everything listed in this file is meant to be user-facing.
+    default_visibility = ["//visibility:public"],
+)
+
+alias(
+    name = "cc/calloc",
+    actual = "//libc_replacer/cc:calloc",
+)
+
+alias(
+    name = "cc/clock",
+    actual = "//libc_replacer/cc:clock",
+)
+
+alias(
+    name = "cc/free",
+    actual = "//libc_replacer/cc:free",
+)
+
+alias(
+    name = "cc/malloc",
+    actual = "//libc_replacer/cc:malloc",
+)
+
+alias(
+    name = "cc/realloc",
+    actual = "//libc_replacer/cc:realloc",
+)
+
+alias(
+    name = "cc/time",
+    actual = "//libc_replacer/cc:time",
+)
+
+alias(
+    name = "cc/timespec_get",
+    actual = "//libc_replacer/cc:timespec_get",
+)
