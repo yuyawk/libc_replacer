@@ -52,11 +52,11 @@ def _validate_libs_to_replace(libs_to_replace):
     for lib in libs_to_replace:
         if lib not in SUPPORTED_LIBRARIES:
             fail(
-                "Cannot replace library {}: ".format(lib) +
+                "Cannot replace library '{}': ".format(lib) +
                 "Elements in `libs_to_replace`" +
-                " must be either of ({})".format(
-                    ",".join(["'" + lib + "'" for lib in SUPPORTED_LIBRARIES]),
-                ),
+                " must be either of {" +
+                ", ".join(["'" + lib + "'" for lib in SUPPORTED_LIBRARIES]) +
+                "}",
             )
 
 def cc_libc_replacer_binary(*, libs_to_replace, **kwargs):
