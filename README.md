@@ -65,7 +65,7 @@ int main(void) {
 
 Load `libc_replacer` from the [Bazel Central Registry][bcr] to use it as a Bazel module.
 
-The module provides `cc_libc_replacer_binary` and `cc_libc_replacer_test`, which are similar to `cc_binary` and `cc_test`, with one additional required parameter: `libs_to_replacer`. This parameter, a list of strings, specifies the names of libc APIs to replace.
+The module provides `cc_libc_replacer_binary` and `cc_libc_replacer_test`, which are similar to `cc_binary` and `cc_test`, with one additional required parameter: `libs_to_replace`. This parameter, a list of strings, specifies the names of libc APIs to replace.
 
 ```bazel
 load(
