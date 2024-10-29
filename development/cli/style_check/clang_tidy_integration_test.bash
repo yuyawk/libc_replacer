@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Execute clang-tidy in the example repository.
+# Execute clang-tidy in the integration test module.
 
 set -euo pipefail
 
