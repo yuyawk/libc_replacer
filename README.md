@@ -1,6 +1,6 @@
 # libc_replacer
 
-Replace libc APIs with user-defined functions for deterministic testing.
+Replace libc APIs with user-defined functions.
 
 ## Description
 
