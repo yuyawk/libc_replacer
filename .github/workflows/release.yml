@@ -1,0 +1,13 @@
+---
+name: Release
+
+on:
+  push:
+    tags:
+      - "[0-9]+.[0-9]+.[0-9]+"
+
+jobs:
+  release:
+    uses: bazel-contrib/.github/.github/workflows/release_ruleset.yaml@v7
+    with:
+      release_files: libc_replacer-*.tar.gz
