@@ -8,13 +8,13 @@ Replace libc APIs with user-defined functions for deterministic testing.
 
 By substituting libc APIs with mock implementations, `libc_replacer` allows for more predictable and isolated testing environments. Supported libc APIs include:
 
-- [calloc][calloc]
-- [clock][clock]
-- [free][free]
-- [malloc][malloc]
-- [realloc][realloc]
-- [time][time]
-- [timespec_get][timespec_get]
+- [`calloc`][calloc]
+- [`clock`][clock]
+- [`free`][free]
+- [`malloc`][malloc]
+- [`realloc`][realloc]
+- [`time`][time]
+- [`timespec_get`][timespec_get]
 
 ## Prerequisites
 
