@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-Ensure [`bazelisk`](https://github.com/bazelbuild/bazelisk) is installed before running any tests or development scripts.
+Ensure [`bazelisk`][bazelbuild/bazelisk] is installed before running any tests or development scripts.
 
 ## Testing
 
@@ -37,6 +37,7 @@ After the BCR PR is approved and merged, the `libc_replacer` module becomes avai
 
 <!-- below are reference links -->
 
+[bazelbuild/bazelisk]: https://github.com/bazelbuild/bazelisk
 [bazelbuild/buildtools]: https://github.com/bazelbuild/buildtools
 [clang-format]: https://clang.llvm.org/docs/ClangFormat.html
 [clang-tidy]: https://clang.llvm.org/extra/clang-tidy/
