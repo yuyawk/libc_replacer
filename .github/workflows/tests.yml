@@ -37,7 +37,7 @@ jobs:
         with:
           path: ${{ github.workspace }}/.cache
           key: ${{ github.repository }}-${{ github.job }}-${{ matrix.bazel-version }}-${{ matrix.compilation-mode }}-${{ runner.os }}-${{ hashFiles('.bazelrc', 'WORKSPACE', 'MODULE.bazel') }}
-          restore-key: ${{ github.repository }}-${{ github.job }}-${{ matrix.bazel-version }}-${{ matrix.compilation-mode }}-${{ runner.os }}-
+          restore-keys: ${{ github.repository }}-${{ github.job }}-${{ matrix.bazel-version }}-${{ matrix.compilation-mode }}-${{ runner.os }}-
       - name: Set up
         uses: ./.github/actions/setup
         with:
@@ -72,7 +72,7 @@ jobs:
         with:
           path: ${{ github.workspace }}/integration_test/bazel/.cache
           key: ${{ github.repository }}-${{ github.job }}-${{ matrix.bazel-version }}-${{ matrix.compilation-mode }}-${{ runner.os }}-${{ hashFiles('.bazelrc', 'WORKSPACE', 'MODULE.bazel', 'integration_test/bazel/.bazelrc', 'integration_test/bazel/WORKSPACE', 'integration_test/bazel/MODULE.bazel') }}
-          restore-key: ${{ github.repository }}-${{ github.job }}-${{ matrix.bazel-version }}-${{ matrix.compilation-mode }}-${{ runner.os }}-
+          restore-keys: ${{ github.repository }}-${{ github.job }}-${{ matrix.bazel-version }}-${{ matrix.compilation-mode }}-${{ runner.os }}-
       - name: Set up
         uses: ./.github/actions/setup
         with:
@@ -108,7 +108,7 @@ jobs:
         with:
           path: ${{ github.workspace }}/.cache
           key: ${{ github.repository }}-${{ github.job }}-${{ env.bazel-version }}-${{ matrix.style-checker }}-${{ runner.os }}-${{ hashFiles('.bazelrc', 'WORKSPACE', 'MODULE.bazel') }}
-          restore-key: ${{ github.repository }}-${{ github.job }}-${{ env.bazel-version }}-${{ matrix.style-checker }}-${{ runner.os }}-
+          restore-keys: ${{ github.repository }}-${{ github.job }}-${{ env.bazel-version }}-${{ matrix.style-checker }}-${{ runner.os }}-
       - name: Run formatters and linters
         shell: bash
         run: "./development/cli/style_check/${STYLE_CHECKER}"
