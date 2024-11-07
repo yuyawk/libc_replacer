@@ -1,21 +1,11 @@
-"""Define public include point.
+"""Define C/C++ re-exporting targets.
 """
 
-cc_library(
-    name = "cc",
-    hdrs = ["interface.h"],
-    # Explicitly set `include_prefix`
-    # in order to use `-I` and have the user include the header with `<>`
-    include_prefix = "libc_replacer/cc",
-    visibility = ["//visibility:public"],
-    deps = [
-        "//libc_replacer/cc/calloc",
-        "//libc_replacer/cc/clock",
-        "//libc_replacer/cc/clock_gettime",
-        "//libc_replacer/cc/free",
-        "//libc_replacer/cc/malloc",
-        "//libc_replacer/cc/realloc",
-        "//libc_replacer/cc/time",
-        "//libc_replacer/cc/timespec_get",
-    ],
-)
+load(":defs.bzl", "SUPPORTED_LIBRARIES", "cc_reexport_library")
+
+[
+    cc_reexport_library(
+        name = library,
+    )
+    for library in SUPPORTED_LIBRARIES
+]

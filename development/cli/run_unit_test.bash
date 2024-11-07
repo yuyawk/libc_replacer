@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Run integration tests.
+# Run unit tests.
 
 set -euo pipefail
 

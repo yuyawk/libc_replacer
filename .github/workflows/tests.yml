@@ -25,12 +25,20 @@ jobs:
         runner:
           - ubuntu-20.04
           - ubuntu-22.04
+          - ubuntu-24.04
     runs-on: ${{ matrix.runner }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
           ref: ${{ github.head_ref }}
+      - name: Look up cache if it's not a scheduled job
+        if: ${{ github.event_name != 'schedule' }}
+        uses: actions/cache@v4
+        with:
+          path: ${{ github.workspace }}/.cache
+          key: ${{ github.repository }}-${{ github.job }}-${{ matrix.bazel-version }}-${{ matrix.compilation-mode }}-${{ runner.os }}-${{ hashFiles('.bazelrc', 'WORKSPACE', 'MODULE.bazel') }}
+          restore-keys: ${{ github.repository }}-${{ github.job }}-${{ matrix.bazel-version }}-${{ matrix.compilation-mode }}-${{ runner.os }}-
       - name: Set up
         uses: ./.github/actions/setup
         with:
@@ -53,12 +61,20 @@ jobs:
         runner:
           - ubuntu-20.04
           - ubuntu-22.04
+          - ubuntu-24.04
     runs-on: ${{ matrix.runner }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
           ref: ${{ github.head_ref }}
+      - name: Look up cache if it's not a scheduled job
+        if: ${{ github.event_name != 'schedule' }}
+        uses: actions/cache@v4
+        with:
+          path: ${{ github.workspace }}/integration_test/bazel/.cache
+          key: ${{ github.repository }}-${{ github.job }}-${{ matrix.bazel-version }}-${{ matrix.compilation-mode }}-${{ runner.os }}-${{ hashFiles('.bazelrc', 'WORKSPACE', 'MODULE.bazel', 'integration_test/bazel/.bazelrc', 'integration_test/bazel/WORKSPACE', 'integration_test/bazel/MODULE.bazel') }}
+          restore-keys: ${{ github.repository }}-${{ github.job }}-${{ matrix.bazel-version }}-${{ matrix.compilation-mode }}-${{ runner.os }}-
       - name: Set up
         uses: ./.github/actions/setup
         with:
@@ -71,6 +87,8 @@ jobs:
 
   style-check:
     runs-on: ubuntu-latest
+    env:
+      bazel-version: 7.x
     strategy:
       matrix:
         style-checker:
@@ -86,7 +104,14 @@ jobs:
       - name: Set up
         uses: ./.github/actions/setup
         with:
-          bazel-version: 7.x
+          bazel-version: ${{ env.bazel-version }}
+      - name: Look up cache if it's not a scheduled job
+        if: ${{ github.event_name != 'schedule' }}
+        uses: actions/cache@v4
+        with:
+          path: ${{ github.workspace }}/.cache
+          key: ${{ github.repository }}-${{ github.job }}-${{ env.bazel-version }}-${{ matrix.style-checker }}-${{ runner.os }}-${{ hashFiles('.bazelrc', 'WORKSPACE', 'MODULE.bazel') }}
+          restore-keys: ${{ github.repository }}-${{ github.job }}-${{ env.bazel-version }}-${{ matrix.style-checker }}-${{ runner.os }}-
       - name: Run formatters and linters
         shell: bash
         run: "./development/cli/style_check/${STYLE_CHECKER}"
