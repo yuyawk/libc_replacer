@@ -10,6 +10,7 @@ cc_libc_replacer_binary(
     srcs = ["test.c"],
     copts = ["-lrt"],
     defines = ["_POSIX_C_SOURCE=199309L"],
+    libs_to_replace = ["clock_gettime"],
     deps = ["@testing"],
 )
 
@@ -19,6 +20,7 @@ cc_libc_replacer_test(
     srcs = ["test.c"],
     copts = ["-lrt"],
     defines = ["_POSIX_C_SOURCE=199309L"],
+    libs_to_replace = ["clock_gettime"],
     deps = ["@testing"],
 )
 

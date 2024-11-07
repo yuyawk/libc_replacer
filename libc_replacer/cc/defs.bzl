@@ -8,6 +8,7 @@ SUPPORTED_LIBRARIES = [
     # keep sorted
     "calloc",
     "clock",
+    "clock_gettime",
     "free",
     "malloc",
     "realloc",

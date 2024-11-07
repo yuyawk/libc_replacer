@@ -1,4 +1,4 @@
-#include <libc_replacer/cc/interface.h>
+#include <libc_replacer/cc/clock_gettime.h>
 #include <testing/testing.h>
 
 #include <stdbool.h>
