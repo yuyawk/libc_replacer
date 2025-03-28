@@ -9,9 +9,3 @@ cc_library(
     include_prefix = "testing",
     visibility = ["//visibility:public"],
 )
-
-bazel_dep(
-    name = "rules_cc",
-    version = "0.1.1",
-    dev_dependency = True,
-)
