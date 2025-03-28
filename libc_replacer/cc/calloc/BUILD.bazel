@@ -1,6 +1,8 @@
 """C/C++ implementations to replace `calloc`.
 """
 
+load("@rules_cc//cc:cc_library.bzl", "cc_library")
+
 cc_library(
     name = "calloc",
     srcs = ["calloc.c"],

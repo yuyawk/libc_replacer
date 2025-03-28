@@ -1,6 +1,8 @@
 """C/C++ implementations to replace `time`.
 """
 
+load("@rules_cc//cc:cc_library.bzl", "cc_library")
+
 cc_library(
     name = "timespec_get",
     srcs = ["timespec_get.c"],

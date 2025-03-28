@@ -1,9 +1,17 @@
 """Define testing utilities."""
 
+load("@rules_cc//cc:cc_library.bzl", "cc_library")
+
 cc_library(
     name = "testing",
     testonly = True,
     hdrs = ["testing.h"],
     include_prefix = "testing",
     visibility = ["//visibility:public"],
+)
+
+bazel_dep(
+    name = "rules_cc",
+    version = "0.1.1",
+    dev_dependency = True,
 )
