@@ -1,6 +1,10 @@
 """Define Bazel implementations to wrap libc for C/C++ applications.
 """
 
+load("@rules_cc//cc:cc_binary.bzl", "cc_binary")
+load("@rules_cc//cc:cc_library.bzl", "cc_library")
+load("@rules_cc//cc:cc_test.bzl", "cc_test")
+
 # Internal only, some of them may be re-exported at the root package.
 visibility("//...")
 
@@ -68,7 +72,7 @@ def cc_libc_replacer_binary(*, libs_to_replace, **kwargs):
     """
     _validate_libs_to_replace(libs_to_replace)
     kwargs = _get_modified_kwargs(libs_to_replace, kwargs)
-    native.cc_binary(**kwargs)
+    cc_binary(**kwargs)
 
 def cc_libc_replacer_test(*, libs_to_replace, **kwargs):
     """`cc_test` with libc replacer APIs.
@@ -80,7 +84,7 @@ def cc_libc_replacer_test(*, libs_to_replace, **kwargs):
 
     _validate_libs_to_replace(libs_to_replace)
     kwargs = _get_modified_kwargs(libs_to_replace, kwargs)
-    native.cc_test(**kwargs)
+    cc_test(**kwargs)
 
 def cc_reexport_library(*, name):
     """Wrapper of `cc_library` to re-export each sub-library.
@@ -90,7 +94,7 @@ def cc_reexport_library(*, name):
     Args:
         name(str): Name of the sub-library.
     """
-    native.cc_library(
+    cc_library(
         name = name,
         hdrs = [name + ".h"],
         # Explicitly set `include_prefix`

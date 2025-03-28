@@ -3,6 +3,7 @@ load(
     "cc_libc_replacer_binary",
     "cc_libc_replacer_test",
 )
+load("@rules_shell//shell:sh_test.bzl", "sh_test")
 
 cc_libc_replacer_binary(
     name = "test_binary",

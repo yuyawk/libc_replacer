@@ -1,6 +1,8 @@
 """C/C++ implementations to replace `clock`.
 """
 
+load("@rules_cc//cc:cc_library.bzl", "cc_library")
+
 cc_library(
     name = "clock",
     srcs = ["clock.c"],

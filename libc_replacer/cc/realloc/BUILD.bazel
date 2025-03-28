@@ -1,6 +1,8 @@
 """C/C++ implementations to replace `realloc`.
 """
 
+load("@rules_cc//cc:cc_library.bzl", "cc_library")
+
 cc_library(
     name = "realloc",
     srcs = ["realloc.c"],

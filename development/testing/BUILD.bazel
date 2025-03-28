@@ -1,5 +1,7 @@
 """Define testing utilities."""
 
+load("@rules_cc//cc:cc_library.bzl", "cc_library")
+
 cc_library(
     name = "testing",
     testonly = True,
