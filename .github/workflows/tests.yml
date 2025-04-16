@@ -22,8 +22,8 @@ jobs:
           - dbg
         bazel-version:
           - 7.x
+          - 8.x
         runner:
-          - ubuntu-20.04
           - ubuntu-22.04
           - ubuntu-24.04
     runs-on: ${{ matrix.runner }}
@@ -58,8 +58,8 @@ jobs:
           - dbg
         bazel-version:
           - 7.x
+          - 8.x
         runner:
-          - ubuntu-20.04
           - ubuntu-22.04
           - ubuntu-24.04
     runs-on: ${{ matrix.runner }}
