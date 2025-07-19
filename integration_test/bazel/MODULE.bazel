@@ -16,7 +16,7 @@ bazel_dep(name = "rules_shell", version = "0.5.0", dev_dependency = True)
 
 # Register toolchain for C/C++
 # `toolchains_musl` for C/C++ toolchain
-bazel_dep(name = "toolchains_musl", version = "0.1.26", dev_dependency = True)
+bazel_dep(name = "toolchains_musl", version = "0.1.27", dev_dependency = True)
 
 toolchains_musl = use_extension(
     "@toolchains_musl//:toolchains_musl.bzl",
