@@ -11,3 +11,5 @@ jobs:
     uses: bazel-contrib/.github/.github/workflows/release_ruleset.yaml@v7
     with:
       release_files: libc_replacer-*.tar.gz
+      prerelease: false
+      
