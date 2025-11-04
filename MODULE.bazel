@@ -30,7 +30,7 @@ register_toolchains(
 )
 
 # `buildifier_prebuilt` for buildifier
-bazel_dep(name = "buildifier_prebuilt", version = "8.2.0", dev_dependency = True)
+bazel_dep(name = "buildifier_prebuilt", version = "8.2.1", dev_dependency = True)
 
 # `clang_tools` for clang-tidy and clang-format
 bazel_dep(name = "clang_tools", version = "", dev_dependency = True)
