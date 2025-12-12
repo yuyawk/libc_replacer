@@ -34,7 +34,7 @@ jobs:
           ref: ${{ github.head_ref }}
       - name: Look up cache if it's not a scheduled job
         if: ${{ github.event_name != 'schedule' }}
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ${{ github.workspace }}/.cache
           key: ${{ github.repository }}-${{ github.job }}-${{ matrix.bazel-version }}-${{ matrix.compilation-mode }}-${{ runner.os }}-${{ hashFiles('.bazelrc', 'WORKSPACE', 'MODULE.bazel') }}
@@ -70,7 +70,7 @@ jobs:
           ref: ${{ github.head_ref }}
       - name: Look up cache if it's not a scheduled job
         if: ${{ github.event_name != 'schedule' }}
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ${{ github.workspace }}/integration_test/bazel/.cache
           key: ${{ github.repository }}-${{ github.job }}-${{ matrix.bazel-version }}-${{ matrix.compilation-mode }}-${{ runner.os }}-${{ hashFiles('.bazelrc', 'WORKSPACE', 'MODULE.bazel', 'integration_test/bazel/.bazelrc', 'integration_test/bazel/WORKSPACE', 'integration_test/bazel/MODULE.bazel') }}
@@ -107,7 +107,7 @@ jobs:
           bazel-version: ${{ env.bazel-version }}
       - name: Look up cache if it's not a scheduled job
         if: ${{ github.event_name != 'schedule' }}
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ${{ github.workspace }}/.cache
           key: ${{ github.repository }}-${{ github.job }}-${{ env.bazel-version }}-${{ matrix.style-checker }}-${{ runner.os }}-${{ hashFiles('.bazelrc', 'WORKSPACE', 'MODULE.bazel') }}
